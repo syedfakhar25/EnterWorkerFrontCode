@@ -1,0 +1,256 @@
+<!-- Content Wrapper. Contains page content -->
+<div>
+  <!-- Content Header (Page header) -->
+  <div class="curve">
+    <p></p>
+  </div>
+  <!-- Content Header (Page header) -->
+  <div class="row">
+    <div class="col-md-3">
+      <h3 class="heading"><strong>Calendar</strong></h3>
+    </div>
+
+    <div class="col-md-3">
+
+    </div>
+
+    <div class="col-md-6" style="text-align: right;">
+
+      <!-- <div class="dropdown" style="display: inline-block;margin-left:10%;">
+        <button class="drpBtn">
+          <img style="height:30px;width:40px;margin-top:-20px" src="../../../../../assets/img/en.png">
+        </button>
+        <div class="dropdown-content">
+          <a (click)="changeLang('../../../../../assets/images/en.png','en')"><img style="height:30px;width:50px;"
+              src="../../../../../assets/img/en.png"></a>
+          <a (click)="changeLang('../../../../../assets/images/no.png','no')"><img style="height:30px;width:50px;"
+              src="../../../../../assets/img/en.png"></a>
+
+        </div>
+      </div> -->
+
+      <div class="dropdown" style="display: inline-block;">
+        <button class="drpbtn" style=" background-color: transparent!important">
+          <i class="fas fa-bell icon" style="color:black!important"></i>
+        </button>
+        <div class="dropdown-content2">
+
+          <button class="button1"> No Today's Events</button>
+        </div>
+      </div>
+
+      <div class="dropdown1" style="display: inline-block;">
+        <button class="drpbtn" style=" background-color: transparent!important">
+          <img src="{{shared.customerData.img}}" class="img-circle profile-pic" alt="User Image">
+        </button>
+        <div class="dropdown-content1">
+
+          <button class="button1" (click)="logout()">Logout</button>
+        </div>
+      </div>
+
+
+
+
+      <h3 class="profile">
+        {{shared.customerData.first_name}} {{shared.customerData.last_name}}
+        <br>
+        <span class="small-text">{{shared.customerData.designation}}</span>
+
+
+      </h3>
+
+      <div class="dropdown" style="display: inline-block;">
+        <button class="drpbtn" style=" background-color: transparent!important">
+          <i class="fas fa-cog icon" style="color:black!important"></i>
+        </button>
+        <div class="dropdown-content2">
+
+          <button class="button1"> No Setting Available</button>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+  <section class="content" style="margin-top:1%;">
+    <div class="container-fluid">
+
+
+      <div class="row">
+        <div class="formm">
+          <div class="col-md-12" style="display: inline-flex">
+            <button style="background-color: transparent;" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+              (viewDateChange)="closeOpenMonthViewDay()">
+              <i class="fas fa-chevron-left" style="font-size:40px;"></i>
+            </button>
+            <h1 style="font-weight: bolder;font-size:20px;padding:2%;">{{ viewDate | calendarDate:('month' +
+              'ViewTitle'):'en' }}
+            </h1>
+            <button style="background-color: transparent;" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+              (viewDateChange)="closeOpenMonthViewDay()">
+              <i class="fas fa-chevron-right" style="font-size:40px;"></i>
+            </button>
+          </div>
+          <div class="col-md-12" style="margin-top:-5%">
+
+
+
+            <button type="submit" class="btn3" (click)="setView(CalendarView.Day,'day')">
+              Days
+            </button>
+
+            <button type="submit" class="btn2" (click)="setView(CalendarView.Week,'week')">
+              Week
+            </button>
+
+            <button type="submit" class="btn1" (click)="setView(CalendarView.Month,'month')">
+              Month
+            </button>
+
+            <!-- <button type="submit" class="addBtn" *ngIf="role == 'admin' || role == 'project manager' || role=='customer'" (click)="addEvent()">
+                <i class="fas fa-plus"></i>
+                <span style="font-size:15px;margin-left:2%">Add Events</span>
+              </button> -->
+
+
+
+
+
+
+          </div>
+
+
+
+          <br />
+          <div [ngSwitch]="view" class="cal-month-view" role="grid">
+            <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
+              [refresh]="refresh" (dayClicked)="dayClicked($event.day)"
+              (eventClicked)="handleEvent('Clicked', $event.event,viewEventmodal)"
+              (eventTimesChanged)="eventTimesChanged($event)">
+            </mwl-calendar-month-view>
+
+            <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events"
+              [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event,viewEventmodal)"
+              (eventTimesChanged)="eventTimesChanged($event)">
+            </mwl-calendar-week-view>
+            <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events"
+              [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event,viewEventmodal)"
+              (eventTimesChanged)="eventTimesChanged($event)">
+            </mwl-calendar-day-view>
+
+          </div>
+
+        </div>
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header" [style.background-color]="'#343A40'">
+              <div class="card-title" style="color:#fff;font-size: 24px;">
+                Total Events
+              </div>
+            </div>
+            <div class="card-body" *ngFor="let a of events;let i =index">
+              <div class="responsive">
+                <div class="table">
+                  <thead>
+                    <tr [style.background-color]="'#007BFF'">
+                      <th width="20%" style="font-size: 15px;font-weight: bold;color:#fff">Title</th>
+                      <th width="20%" style="font-size: 15px;font-weight: bold;color:#fff">Event Color</th>
+                      <th width="20%" style="font-size: 15px;font-weight: bold;color:#fff">Event Start</th>
+                      <th width="20%" style="font-size: 15px;font-weight: bold;color:#fff">Event End</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td width="30%">
+                        {{a.title}}
+                      </td>
+                      <td width="10%">
+
+                        <div style="border-radius: 8px;width:40px;height:20px;"
+                          [style.background-color]="a.color?.primary" readonly></div>
+                      </td>
+                      <td width="30%">
+                        {{a.start}}
+                      </td>
+                      <td width="30%">
+                        {{a.end}}
+                      </td>
+
+                    </tr>
+                  </tbody>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- /.content -->
+</div>
+
+
+<ng-template #viewEventmodal let-modal>
+  <div class="modal-header" [style.background]="'black'">
+    <h4 class="modal-title" id="modal-basic-title" style="color:#fff;font-size:24px;margin-top:2%">View Event
+    </h4>
+
+    <button style="background-color: transparent;float: right;color:#fff" (click)="Cancel()">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row" class="margin-bottom:2%">
+      <div class="col-md-12">
+
+        <div class="form-group">
+          <label>Select Color</label>
+          <input type="color" class="select-color" name="favcolor" id="favcolor" value="#ff0000"
+            (click)="Selectcolor('#ff0000',1)" [style.border]="select1?'2px solid #000':'none'" readonly />
+
+        </div>
+        <div class="form=group">
+          <label for="appt">Start DateTime:</label>
+          <input id="starttime" type="datetime-local" class="form-control" [formControl]="starttime" readonly>
+
+        </div>
+
+        <div class="form=group">
+          <label for="appt">End DateTime:</label>
+          <input id="endtime" type="datetime-local" class="form-control" [formControl]="endtime" readonly>
+
+        </div>
+
+        <div class="form=group">
+          <label for="appt">Event Title:</label>
+          <input type="text" class="form-control" [formControl]="subject">
+        </div>
+
+
+      </div>
+      <div class="col-md-12" style="padding-top:1%">
+
+
+        <!-- <button class="editBtn" (click)="ChangeEvent()">
+          <mat-icon class="icon">edit</mat-icon>
+          <span style="vertical-align: middle;font-size: 15px;margin-left:5px">{{'Rediger hendelse'|translate}}</span>
+        </button>
+        <button class="deleteBtn" (click)="deleteEvent()" [style.background-color]="shared.Colors.primarycolor">
+          <mat-icon class="icon">delete</mat-icon>
+          <span style="vertical-align: middle;font-size: 15px;margin-left:5px;">{{'Slett hendelse'|translate}}</span>
+
+        </button> -->
+
+
+
+      </div>
+    </div>
+  </div>
+
+</ng-template>

@@ -1,0 +1,68 @@
+<!-- <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-7" >
+            <img class="logo" src="../../assets/img/turnkey logo.svg">
+        </div>
+        <div class="col-md-6">
+            <img class="login-bg" src="../../assets/img/login.svg" />
+        </div>
+        <div class="col-md-6">
+            <h1 style="padding-left:2%;font-weight: bolder;margin-top:-10%;">Sign In</h1>
+            <div style="height:30px;"></div>
+            <div class="inp" >
+                <i class="fas fa-user input-icon" ></i>
+                <input type="email" class="input" placeholder="Your Email"  [formControl]="email">
+                
+            </div>
+            <div class="hl"></div>
+           <div style="height:30px;"></div>
+
+            <div class="inp" >
+                <i class="fas fa-lock input-icon"  ></i>
+                <input type="password" placeholder="Password" class="input" [formControl]="password">
+            </div>
+            <div class="hl"></div>
+
+            <div class="checkbox">
+                <input type="checkbox" (change)="RememberMe($event)">
+                <label style="margin-left:2%;font-weight:lighter"> Remember me</label>
+                <br>
+            </div>
+            
+            <button class="btn loginBtn" (click)="login()">Log in</button>
+
+        </div>
+
+
+    </div>
+</div> -->
+
+
+<!--- Sales Portal Login-->
+<div class="wrapper fadeInDown">
+    <div id="formContent"  [style.background]="'#C22B30'">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first"  style="padding-top:40px;padding-bottom:20px;">
+        <img src="../../assets/img/turnkey logo.svg" id="icon" alt="User Icon" />
+        
+      </div>
+  
+      <!-- Login Form -->
+      <form style="padding-top:20px;padding-bottom:20px;">
+        <input type="text" id="login" class="fadeIn second" [formControl]="email" placeholder="Email" >
+        <br>
+        <input type="password" id="password" class="fadeIn third" [formControl]="password" placeholder="Password">
+        <br>
+        <input type="submit" class="fadeIn fourth" value="Log In" (click)="login()" [style.color]="'#c3a34e'">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <!-- <div id="formFooter"> -->
+        <!-- <a class="underlineHover" href="#" [style.color]="shared.Colors.primarycolor">Forgot Password?</a> -->
+      <!-- </div> -->
+  
+    </div>
+  </div>

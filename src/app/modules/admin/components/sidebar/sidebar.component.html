@@ -1,0 +1,92 @@
+<div class="list">
+    <div class="header">
+     <img style="padding-top:10%;"  src="../../../../../assets/img/turnkey logo - white.svg"/>
+    </div>
+     <div style="padding-top:20%"></div>
+    <div  routerLinkActive="red" routerLink="home" class="white" >
+     
+        <i routerLink="home" routerLinkActive="icon-active" class="fas fa-desktop icon"  [style.margin-right]="'10%'"    [style.margin-left]="'5%'" ></i>
+        <span class="sidebar-text">Dashboard</span>
+    </div>
+    
+    <div routerLinkActive="red" routerLink="projects" class="white" (click)="admintotalProjects()" *ngIf="role == 'project manager' || role == 'admin' || role=='employee' || role =='company worker'">
+        
+        <i class="fas fa-share-alt icon" routerLink="projects" routerLinkActive="icon-active" [style.margin-right]="'11%'"     [style.margin-left]="'5%'" ></i>
+       <span class="sidebar-text">Projects</span>
+    </div>
+    <div routerLinkActive="red" routerLink="{{role}}/other-tasks/under-construction" class="white" *ngIf="role=='employee' || role =='company worker'">
+        
+        <i class="fas fa-tasks icon" routerLink="{{role}}/other-tasks/under-construction" routerLinkActive="icon-active" [style.margin-right]="'11%'"     [style.margin-left]="'5%'" ></i>
+       <span class="sidebar-text">Other Tasks</span>
+    </div>
+
+    <div routerLinkActive="red" routerLink="designations" class="white" *ngIf="role == 'admin'">
+        
+        <i routerLink="designations" class="fas fa-briefcase icon" routerLinkActive="icon-active" [style.margin-right]="'10%'"    [style.margin-left]="'5%'" ></i>
+       <span class="sidebar-text">Designations</span>
+    </div>
+  
+    <div routerLinkActive="red" routerLink="employees" class="white" *ngIf="role == 'admin' || role =='company worker'" >
+        
+        <i routerLink="employees" class="fas fa-users icon" routerLinkActive="icon-active" [style.margin-right]="'9%'"    [style.margin-left]="'5%'" ></i>
+       <span class="sidebar-text">Employees</span>
+    </div>
+
+    <div routerLinkActive="red" routerLink="managers" class="white" *ngIf="role == 'admin'">
+        
+        <i routerLink="managers" class="fas fa-user-friends icon" routerLinkActive="icon-active" [style.margin-right]="'9%'"    [style.margin-left]="'5%'" ></i>
+       <span class="sidebar-text">Project Managers</span>
+    </div>
+  
+    <div routerLinkActive="red" routerLink="workers" class="white" *ngIf="role == 'admin'">
+        
+        <i routerLink="workers" class="fas fa-user-friends icon" routerLinkActive="icon-active" [style.margin-right]="'9%'"    [style.margin-left]="'5%'" ></i>
+       <span class="sidebar-text">Company Workers</span>
+    </div>
+
+    <div routerLinkActive="red" routerLink="customers" class="white" *ngIf="role == 'admin'">
+        
+        <i routerLink="customers" class="fas fa-user-friends icon" routerLinkActive="icon-active" [style.margin-right]="'9%'"    [style.margin-left]="'5%'" ></i>
+       <span class="sidebar-text">Customers</span>
+    </div>
+
+    <div  class="white" *ngIf="role =='company worker'" routerLink="{{role}}/customers/under-construction" routerLinkActive="red">
+        
+        <i  routerLink="{{role}}/customers/under-construction" class="fas fa-user-friends icon" routerLinkActive="icon-active" [style.margin-right]="'9%'"    [style.margin-left]="'5%'" ></i>
+       <span class="sidebar-text">Customers</span>
+    </div>
+
+    <div routerLinkActive="red" routerLink="{{role}}/timelist/under-construction" class="white" *ngIf="role == 'company worker' || role=='employee'">
+        
+        <i routerLink="{{role}}/timelist/under-construction" class="fas fa-file-signature icon" routerLinkActive="icon-active" [style.margin-right]="'10%'"    [style.margin-left]="'5%'" ></i>
+       <span class="sidebar-text">Timelist</span>
+    </div>
+   
+    <!-- <div routerLinkActive="red" routerLink="chat" class="white" *ngIf="role != 'company worker'">
+        
+        <i routerLink="chat" class="far fa-comment-alt icon" routerLinkActive="icon-active" [style.margin-right]="'11%'"    [style.margin-left]="'5%'" ></i>
+       <span class="sidebar-text">Chat</span>
+    </div> -->
+    <div routerLinkActive="red" routerLink="{{role}}/calendar/under-construction"  class="white" *ngIf="role == 'company worker' || role=='employee'">
+        
+        <i routerLink="{{role}}/calendar/under-construction"  class="fas fa-calendar-alt icon" routerLinkActive="icon-active" [style.margin-right]="'12%'"    [style.margin-left]="'5%'" ></i>
+       <span class="sidebar-text">Calendar</span>
+    </div>
+ 
+    <!-- <div routerLinkActive="red" routerLink="timelist" class="white" *ngIf="role == 'company worker'">
+        
+        <i routerLink="timelist" class="fas fa-file-signature icon" routerLinkActive="icon-active" [style.margin-right]="'10%'"    [style.margin-left]="'5%'" ></i>
+       <span class="sidebar-text">TimeList</span>
+    </div> -->
+
+    <div routerLinkActive="red" routerLink="{{role}}/chat/under-construction" class="white" *ngIf="role == 'company worker' || role=='employee'">
+        
+        <i routerLink="{{role}}/chat/under-construction"  class="fas fa-comment-alt icon" routerLinkActive="icon-active" [style.margin-right]="'12%'"    [style.margin-left]="'5%'" ></i>
+       <span class="sidebar-text">Chat</span>
+    </div>
+    
+
+   
+
+   
+</div>

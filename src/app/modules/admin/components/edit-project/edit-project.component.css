@@ -1,0 +1,356 @@
+/* header css*/
+.curve{
+    left:-8px;
+     height:80px;
+     width:80px;
+     top: -17px;
+     position: relative;
+     background-color: #C22B30;
+   }
+   
+   .curve:after {
+     content: '';
+     position: absolute;
+     margin-left:1px;
+     border: 2px solid #fff;
+     background-color: #fff;
+     padding: 60%;
+     border-top-left-radius: 45px;
+   }
+    
+    
+     .heading{
+       font-size:30px;
+       margin-left:10px;
+       font-family:'Montserrat', sans-serif;
+     }
+    
+    
+     /* Next Css */
+    
+     .row-padding{
+       padding-top:2%;
+       padding-left:1%;
+       }
+       
+       button{
+           border:none;
+           border-radius:20px;
+       }
+       
+       .icon{
+           
+         color:#c3a34e;
+           margin-top:-30px;
+           font-size:40px;
+       }
+       .backIcon{
+           font-size:25px;
+       }
+       .homeIcon{
+           color:#fff;
+           font-size:15px;
+           padding-top:10px;
+           padding-bottom:10px;
+           padding-left:5px;
+           padding-right:5px
+       }
+     
+    
+       
+       .app{
+           background-color: #f2f2f2;
+           height:100%;
+       }
+       
+       .row-padding{
+           padding-top:2%;
+          
+           }
+           
+    
+           
+           .profile{
+             padding-left:5%;
+             padding-right:5%;
+             margin-bottom:-50px;
+             font-size:15px;
+             font-weight:bold;
+             display: inline-block;
+              
+           }
+           
+    
+           .profile-pic{
+               margin-top:-15px;
+       height:40px;
+       width:40px;
+       
+     }
+    
+    
+    
+    
+       
+    
+       .small-text{
+           font-size:10px!important;
+       }
+       
+       .drpBtn{
+           background-color: transparent!important;
+           border:none;
+           outline:0;
+         margin-top:-10px;
+     }
+       .dropbtn1 {
+        
+         color: white;
+         vertical-align: middle;
+         background-color: transparent;
+         color:#000;
+         
+         border: none;
+       }
+       
+       .dropdown {
+         position: relative;
+         display: inline-block;
+       }
+       
+       .dropdown-content {
+         padding:5%;
+         font-size:15px;
+         display: none;
+         position: absolute;
+         color: #f1f1f1;
+         min-width: 80px;
+         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+         z-index: 1;
+       }
+       
+       .dropdown-content a {
+         color: black;
+         padding: 12px 16px;
+         text-decoration: none;
+         display: block;
+       }
+    
+       .dropdown-content .button1{
+         margin:5%;
+       }
+       
+       
+       .dropdown-content .content-item {
+       width:300px;
+       text-align: left;
+       
+       }
+       
+       .dropdown-content .content-item p{
+         text-shadow: 2px 2px 4px #000000;
+         font-size:15px;
+         display: inline-flex;
+         margin-left:2%;
+         vertical-align: middle;
+         }
+       .dropdown-content a:hover {background-color: #ddd;}
+       
+       .dropdown:hover .dropdown-content {display: block;}
+       
+       
+       
+       
+       .dropdown1 {
+         position: relative;
+         display: inline-block;
+       }
+       
+       .dropdown-content1 {
+         padding:2%;
+         font-size:15px;
+         display: none;
+         position: absolute;
+         background-color: #f1f1f1;
+         min-width: 50px;
+         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+         z-index: 1;
+       }
+       
+       .dropdown-content1 a {
+         color: black;
+         padding: 12px 16px;
+         text-decoration: none;
+         display: block;
+       }
+       
+       
+       .dropdown-content1 .dropdown-content-item1 {
+       width:350px;
+       height:200px;
+       text-align: left;
+       }
+       
+       .dropdown-content1 .dropdown-content-item1 p{
+         font-size:12px;
+         display: inline-flex;
+         margin-left:2%;
+         vertical-align: middle;
+         }
+       .dropdown-content1 a:hover {background-color: #ddd;}
+       
+       .dropdown1:hover .dropdown-content1 {display: block;}
+    
+    
+    
+       .dropdown-content2 {
+           padding:2%;
+           font-size:15px;
+           display: none;
+           position: absolute;
+           background-color: #f1f1f1;
+           min-width: 150px;
+           box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+           z-index: 1;
+         }
+         
+         .dropdown-content2 a {
+           color: black;
+           padding: 12px 16px;
+           text-decoration: none;
+           display: block;
+         }
+         
+         
+         .dropdown-content2 .dropdown-content-item1 {
+         width:350px;
+         height:200px;
+         text-align: left;
+         }
+         
+         .dropdown-content2 .dropdown-content-item1 p{
+           font-size:12px;
+           display: inline-flex;
+           margin-left:2%;
+           vertical-align: middle;
+           }
+         .dropdown-content2 a:hover {background-color: #ddd;}
+         
+         .dropdown:hover .dropdown-content2 {display: block;}
+         
+         /* */
+  
+  
+  
+  
+  
+  
+  .uploadBtn{
+      display: block;
+      height:50px;
+      width:50px;
+      margin-top:-10px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius:20px;
+      border:thin;
+      padding:4px;
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+      background-color:#fff
+  }
+  .inp{
+      margin-left:7%;
+      width:83%;
+      outline: 0;
+      border-width: 0 0 2px;
+      border-color: grey;
+      margin-right:7%
+  }
+  .inp:focus{
+      border-color: green
+  }
+  
+  .input{
+      margin-left:15%;
+      width:70%;
+      outline: 0;
+      border-width: 0 0 2px;
+      border-color: grey;
+      margin-right:5%
+  }
+  .input:focus{
+      border-color: green
+  }
+  
+  .input2{
+      margin-left:10%;
+      margin-right:10%;
+      width:70%;
+      outline: 0;
+      border-width: 0 0 2px;
+      border-color: grey
+  }
+  .input2:focus{
+      border-color: green
+  }
+  
+  .submitBtn{
+      background: linear-gradient(#28A745,#32CC55);
+      border-radius:9px;
+      float:right;
+      padding-left:8%;
+      padding-top:1%;
+      padding-bottom:1%;
+      padding-right: 8%;
+      font-size:15px;
+      color:#fff;
+      border:none;
+      text-shadow: 2px 2px 4px #000000;
+  
+  }
+  
+  .cancelBtn{
+      background: linear-gradient(#FB483A , #CE4B40);
+      border-radius:9px;
+      float:left;
+      padding-left:8%;
+      padding-top:1%;
+      padding-bottom:1%;
+      padding-right: 8%;
+      font-size:15px;
+      color:#fff;
+      border:none;
+      text-shadow: 2px 2px 4px #000000;
+  
+  }
+  
+  
+  .input3{
+      outline:0;
+      height:200px;
+      margin-left:7%;
+      margin-right:7%;
+      width:83%;
+  }
+  
+  .adBtn{
+      background: linear-gradient(#28A745,#32CC55);
+      padding-left:8px;
+      padding-right:8px;
+      border-radius:50%;
+      margin-left:-5%;
+      font-size:15px;
+      color:#fff;
+      border:none;
+      display: inline;
+          text-shadow: 2px 2px 4px #000000;
+  }
+  
+  .card{
+      margin-top:2%;
+      border-radius:20px;
+      box-shadow: 0 4px 16px 0 rgba(0,0,0,0.2);
+  }

@@ -1,0 +1,126 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Chat</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">
+                            <div>{{currentDate | date:'dd-MM-yyyy'}}
+                                <br>
+                                <span style="font-size:15px">{{ rxTime | date: 'hh:mm:ss a' }}</span>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card p-2 card1">
+                        <div class="card-header">
+                            <button style="background-color: transparent;border:none;margin-top:3%;">
+                                <label>Search:</label>
+                            </button>
+                            <input type="text" class="Search" [(ngModel)]="groupchatname">
+                        </div>
+                        <div class="card-body">
+                           
+                            <div class="row" *ngFor="let a of groupChats| filter:groupchatname">
+                                <div class="col-md-1">
+                                    <!-- <img alt="Avatar" style="height:50px;width:50px;border-radius:50%;object-fit: contain;"
+                                     class="table-avatar" src="{{a.img}}"> -->
+                                </div>
+                                <div class="col-md-11" >
+                                    <p *ngIf="UserDetails?.id != a.id">{{a.groupchatname}}</p>
+                                    <p *ngIf="UserDetails?.id == a.id">
+                                        <strong>{{a.groupchatname}}</strong>
+                                    </p>
+                                    
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8" *ngIf="chatbox">
+
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <img alt="Avatar" class="table-avatar"
+                                    style="height:50px;width:50px;border-radius:50%;object-fit: contain;"
+                                     src="{{UserDetails.img}}">
+                                </div>
+                                <div class="col-md-11">
+                                    <h3 style="display: inline-flex;font-size:20px;margin-left:2%">{{UserDetails.first_name}} {{UserDetails.last_name}}</h3>
+                                    <p style="font-size:15px;margin-left:2%">{{UserDetails.designation}}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="mesgs">
+                                <div class="msg_history" id="elementID" style="overflow-x: hidden;">
+                                    <div *ngFor="let a of messages" [ngClass]="{'received_msg': shared.customerData.id != a.user?.id, 'outgoing_msg' : shared.customerData.id === a.user?.id }">
+                                       
+                                        <div [ngClass]="{'received_msg': shared.customerData.id != a.user?.id, 'outgoing_msg' : shared.customerData.id === a.user?.id }">
+                                            <div [ngClass]="{'received_withd_msg': shared.customerData.id != a.user?.id, 'sent_msg' : shared.customerData.id === a.user?.id }" >
+                                                <strong *ngIf="shared.customerData.id != a.user?.id" style="font-size:15px;">{{a.user?.first_name}} {{a.user?.last_name}}</strong>
+                                                <strong *ngIf="shared.customerData.id == a.user?.id" style="font-size:15px;margin-left:90%">You</strong>
+                                                <p> {{a.message}} </p>
+                                                <span *ngIf="shared.customerData.id != a.user?.id" class="time_date" style="margin-left:40%"> {{a.created_at | date: 'medium'}}</span>
+                                                <span *ngIf="shared.customerData.id == a.user?.id" class="time_date" style="margin-left:40%"> {{a.created_at | date: 'medium'}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                   
+                                </div>
+                                <div class="type_msg">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="text" class="write_message" [(ngModel)]="newMessage" placeholder="Type a message" />
+                                        </div>
+                                        <div class="col-md-12">
+                                            <button class="btn sendBtn1" type="submit" (click)="SendMessage()">
+                                                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                            </button>
+                                            
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        
+                    </div>
+                    
+
+                   
+                </div>
+            </div>
+        </div>
+       
+    </section>
+    <!-- /.row -->
+
+    <!-- /.content -->
+</div>
+
+<!-- /.content-wrapper -->

@@ -1,0 +1,43 @@
+
+<div class="curve">
+    <p></p>
+</div>
+<div class="row padding_top_nav">
+    <div class="col-md-3">
+        <img class="company_logo" src="/assets/img/turnkey logo.svg">
+    </div>
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6 user_right_portion">
+        <div class="dropdown1" style="display: inline-block;">
+            <!-- <button class="drpbtn" style=" background-color: transparent!important" *ngIf="shared.customerData.img">
+                <img src="{{shared.customerData.img}}" class="img-circle profile-pic" alt="User Image">
+            </button> -->
+            <button class="drpbtn" style=" background-color: transparent!important" >
+                <img src="/assets/img/avatar.png" class="img-circle profile-pic" alt="User Image">
+            </button>
+            <div class="dropdown-content1">
+
+                <button class="button1" (click)="logout()">Logout</button>
+            </div>
+        </div>
+        <h3 class="profile">
+            {{shared.customerData.first_name}} {{shared.customerData.last_name}}
+            <br>
+            <span class="small-text">{{shared.customerData.designation}}</span>
+        </h3>
+        <div class="dropdown" style="display: inline-block">
+            <button class="drpBtn">
+                <img style="height:30px;width:40px;margin-top:-20px" src="../../../../../assets/img/en.png">
+            </button>
+            <div class="dropdown-content">
+                <a (click)="changeLang('../../../../../assets/images/en.png','en')"><img
+                        style="height:30px;width:50px;" src="../../../../../assets/img/en.png"></a>
+                <a (click)="changeLang('../../../../../assets/images/no.png','no')"><img
+                        style="height:30px;width:50px;" src="../../../../../assets/img/en.png"></a>
+
+            </div>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>

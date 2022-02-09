@@ -1,0 +1,1103 @@
+<!-- Content Wrapper. Contains page content -->
+
+<!-- Content Header (Page header) -->
+<div class="cot">
+    <div class="curve">
+        <p></p>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <h3 class="heading"><strong>Dashboard</strong></h3>
+        </div>
+
+        <div class="col-md-3">
+
+        </div>
+
+        <div class="col-md-6" style="text-align: right;">
+
+            <!-- <div class="dropdown" style="display: inline-block;margin-left:10%;">
+                <button class="drpBtn">
+                    <img style="height:30px;width:40px;margin-top:-20px" src="../../../../../assets/img/en.png">
+                </button>
+                <div class="dropdown-content">
+                    <a (click)="changeLang('../../../../../assets/images/en.png','en')"><img
+                            style="height:30px;width:50px;" src="../../../../../assets/img/en.png"></a>
+                    <a (click)="changeLang('../../../../../assets/images/no.png','no')"><img
+                            style="height:30px;width:50px;" src="../../../../../assets/img/en.png"></a>
+
+                </div>
+            </div> -->
+
+            <div class="dropdown" style="display: inline-block;">
+                <button class="drpbtn" style=" background-color: transparent!important">
+                    <i class="fas fa-bell icon" style="color:black!important"></i>
+                </button>
+                <div class="dropdown-content2">
+
+                    <button class="button1"> No Today's Events</button>
+                </div>
+            </div>
+
+            <div class="dropdown1" style="display: inline-block;">
+                <button class="drpbtn" style=" background-color: transparent!important">
+                    <img src="{{shared.customerData.img}}" class="img-circle profile-pic" alt="User Image">
+                </button>
+                <div class="dropdown-content1">
+
+                    <button class="button1" (click)="logout()">Logout</button>
+                </div>
+            </div>
+
+
+
+
+            <h3 class="profile">
+                {{shared.customerData.first_name}} {{shared.customerData.last_name}}
+                <br>
+                <span class="small-text">{{shared.customerData.designation}}</span>
+
+
+            </h3>
+
+            <div class="dropdown" style="display: inline-block;">
+                <button class="drpbtn" style=" background-color: transparent!important">
+                    <i class="fas fa-cog icon" style="color:black!important"></i>
+                </button>
+                <div class="dropdown-content2">
+
+                    <button class="button1"> No Setting Available</button>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content" style="margin-top:1%;">
+        <div class="container-fluid">
+            <!---Admin Dashboard-->
+            <div class="row" *ngIf="role == 'admin'">
+                <div class="col-lg-3 ">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>{{Dashboarddata?.total_projects}}</h3>
+
+                            <p style="display: inline-flex;">Total Projects</p>
+
+                            <img class="icons" src="../../../../../assets/img/layers.png" />
+
+                        </div>
+
+                        <a (click)="admintotalProjects()" class="small-box-footer">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 ">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>{{Dashboarddata?.ongoing_projects}}</h3>
+
+                            <p style="display: inline-flex;">On Going Projects</p>
+                            <img class="icons" src="../../../../../assets/img/page.png" />
+                        </div>
+
+
+
+                        <a (click)="adminOngoingProjects()" class="small-box-footer">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 ">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3 style="color:#fff!important">{{Dashboarddata?.total_employee}}</h3>
+
+                            <p style="display: inline-flex;color:#fff!important">Total Employees</p>
+                            <img class="icons" src="../../../../../assets/img/person.png" />
+                        </div>
+
+
+
+                        <a (click)="openEmployees()" class="small-box-footer" style="color:#fff!important">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 ">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>{{Dashboarddata?.total_customer}}</h3>
+
+                            <p style="display: inline-flex;">Total Customers</p>
+
+                            <img class="icons" src="../../../../../assets/img/rounded.png" />
+                        </div>
+                        <a (click)="openCustomers()" class="small-box-footer">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+            <!---Admin Dashboard-->
+
+
+            <div class="row" *ngIf="role == 'company worker'">
+                <div class="col-lg-1">
+
+                </div>
+                <div class="col-lg-10">
+                    <div class="card" style="height:300px;width:100%;text-align: center;padding:10%;">
+                        <i class="fas fa-tools" style="font-size:40px;"></i>
+                        <h4>Under Construction</h4>
+                    </div>
+                </div>
+                <div class="col-lg-1">
+
+                </div>
+            </div>
+
+            <!---Project Manager Screen-->
+            <div class="row" *ngIf="role == 'project manager'">
+                <div class="col-lg-4 ">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>{{Dashboarddata?.total_projects}}</h3>
+
+                            <p style="display: inline-flex;">Total Projects</p>
+
+                            <img class="icons" src="../../../../../assets/img/layers.png" />
+
+                        </div>
+
+                        <a (click)="openTotalProjects()" class="small-box-footer">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-4 ">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>{{Dashboarddata?.ongoing_projects}}</h3>
+
+                            <p style="display: inline-flex;">On Going Projects</p>
+                            <img class="icons" src="../../../../../assets/img/page.png" />
+                        </div>
+
+
+
+                        <a (click)="openOngoingProjects()" class="small-box-footer">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-4 ">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3 style="color:#fff!important">{{Dashboarddata?.completed_projects}}</h3>
+
+                            <p style="display: inline-flex;color:#fff!important">Completed Projects</p>
+                            <img class="icons" src="../../../../../assets/img/double-tick.png" />
+                        </div>
+
+
+
+                        <a (click)="openCompletedProjects()" class="small-box-footer" style="color:#fff!important">More
+                            info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+
+                <!----Project Manager Screen-->
+            </div>
+            <!-- /.row -->
+
+
+
+            <!---Employee Screen-->
+            <div class="row" *ngIf="role == 'employee'">
+                <div class="col-lg-4 ">
+                    <!-- small box -->
+                    <div class="small-box card1">
+                        <div class="inner">
+                            <h3 style="color:#fff!important">{{Dashboarddata?.total_projects}}</h3>
+
+                            <p style="display: inline-flex;font-size:20px;font-weight:bolder;color:#fff!important">Total
+                                Projects</p>
+
+                            <img class="icons2" src="../../../../../assets/img/ICONS PNG TRANSPARENTS/4.png" />
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-4 ">
+                    <!-- small box -->
+                    <div class="small-box card2">
+                        <div class="inner">
+                            <h3 style="color:#fff!important">{{Dashboarddata?.total_tasks}}</h3>
+
+                            <p style="display: inline-flex;font-size:20px;font-weight:bolder;color:#fff!important">Total
+                                Tasks</p>
+                            <img class="icons2" src="../../../../../assets/img/ICONS PNG TRANSPARENTS/5.png" />
+                        </div>
+
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-4 ">
+                    <!-- small box -->
+                    <div class="small-box card3">
+                        <div class="inner">
+                            <h3 style="color:#fff!important">{{Dashboarddata?.active_tasks}}</h3>
+
+                            <p style="display: inline-flex;font-size:20px;font-weight:bolder;color:#fff!important">Total
+                                Active Tasks</p>
+                            <img class="icons2" src="../../../../../assets/img/ICONS PNG TRANSPARENTS/1.png" />
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-2"></div>
+                <div class="col-lg-4 ">
+                    <!-- small box -->
+                    <div class="small-box card4">
+                        <div class="inner">
+                            <h3 style="color:#fff!important">{{Dashboarddata?.pending_tasks}}</h3>
+
+                            <p style="display: inline-flex;font-size:20px;font-weight:bolder;color:#fff!important">Total
+                                Pending Tasks</p>
+                            <img class="icons2" src="../../../../../assets/img/ICONS PNG TRANSPARENTS/3.png" />
+                        </div>
+
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-4 ">
+                    <!-- small box -->
+                    <div class="small-box card5">
+                        <div class="inner">
+                            <h3 style="color:#fff!important">{{Dashboarddata?.completed_tasks}}</h3>
+
+                            <p style="display: inline-flex;font-size:20px;font-weight:bolder;color:#fff!important">Total
+                                Completed Tasks</p>
+                            <img class="icons2" src="../../../../../assets/img/ICONS PNG TRANSPARENTS/2.png" />
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+                <div class="col-lg-2"></div>
+                <!-- ./col -->
+
+                <!----Employee Screen-->
+            </div>
+            <!-- Main row -->
+
+
+
+            <!---Customer Screen-->
+
+            <div class="row" *ngIf="role == 'customer'">
+
+                <div class="col-lg-1"></div>
+
+                <div class="col-lg-9">
+                    <h3 style="font-size:20px;display:inline-flex">Select Project:</h3>
+
+                    <!-- <input class="searchbar" type="text" [(ngModel)]="projectname" (focusin)="search = true"
+                        (focusout)="search = false">
+                    <div class="card divA" *ngIf="search">
+                        <div class="card-body">
+                            <ul>
+                                <li *ngFor="let a of Projects|filter:projectname" >
+
+                                    
+                                   <button (click)="getProjectDetails(a.id)">
+                                    {{a.name}}
+                                   </button>
+                                       
+                                   
+                                </li>
+                            </ul>
+                        </div>
+                    </div> -->
+
+                    <select name="cars" id="cars" class="searchbar" [(ngModel)]="ProjectId">
+                        <option [ngValue]="a.id" *ngFor="let a of Projects">{{a.name}}</option>
+
+                    </select>
+
+                    <button style="background-color:#fff;
+                      border:none;margin-left:10px;border-radius:20px;
+                      box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);" (click)="getProjectDetails()"> Get Details</button>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+
+            </div>
+            <div class="row" *ngIf="role == 'customer'">
+                <div class="col-lg-8 ">
+                    <div class="card" style="padding:2%">
+                        <div classs="card-body" style="height:340px">
+                            <h4>{{projectDetails?.name}}</h4>
+
+
+                            <p style="color:blue;font-size:12px;display: inline-flex">Starting Date: <span
+                                    style="color:black;margin-left:10px"> {{projectDetails?.start_date}}</span></p>
+                            <p style="margin-left:5%;color:blue;font-size:12px;display: inline-flex">Completing Date:
+                                <span style="color:black;margin-left:10px"> {{projectDetails?.end_date}}</span>
+                            </p>
+                            <p style="margin-left:5%;color:blue;font-size:12px;display: inline-flex">Working Days: <span
+                                    style="color:black;margin-left:10px"> {{workingdays}} Days</span></p>
+
+                            <h4>Description</h4>
+                            <p style="font-size:12px;color:black">
+                                {{projectDetails?.description}}
+
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 ">
+                    <div class="card" style="padding:2%">
+                        <div class="card-body" style="height:350px">
+                            <div class="small-box bg-primary" (click)="getProjectOffer()">
+                                <div class="inner">
+                                    <h4 style="text-align: center;">Project Offer</h4>
+
+                                    <p style="text-align: center;">This is your project offer.</p>
+
+                                </div>
+
+
+
+                                <a class="small-box-footer">Download
+                                    <i class="fas fa-arrow-circle-down"></i></a>
+                            </div>
+
+                            <div class="small-box bg-success" (click)="getProjectDrawing()">
+                                <div class="inner">
+                                    <h4 style="text-align: center;">Project Drawing</h4>
+
+                                    <p style="text-align: center;">This is your project drawing.</p>
+
+                                </div>
+                                <a class="small-box-footer">Download
+                                    <i class="fas fa-arrow-circle-down"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+
+
+            <!---Team members-->
+            <div class="row" *ngIf="role == 'customer'">
+
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body" style="height:350px;">
+
+                            <h4 style="display:inline-block;text-align:left!important;">Project Manager</h4>
+
+
+                            <div style="text-align: center;" *ngIf="Manager != null || Manager != undefined">
+                                <img style="height:150px;width:150px;border-radius:50%;object-fit: contain;"
+                                    src="{{Manager[0]?.img}}">
+                                <p style="padding-top:4%;font-size:20px;font-weight:bold">
+                                    {{Manager[0]?.first_name}} {{Manager[0]?.last_name}}</p>
+                                <p style="font-size:12px;margin-top:-10px">Project Manager</p>
+                                <button class="chatBtn">Chat Now</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-8 ">
+                    <div class="card">
+                        <div class="card-body" style="height:350px;width:100%">
+                            <h4 style="text-align:left!important;display: inline-block;">Team Members</h4>
+                            <button class="addBtn">
+                                <i class="far fa-comments"></i> Group Chat
+                            </button>
+
+                            <div style="text-align: center;">
+                                <p-carousel [value]="Employees" [ngClass]="'p-hide-paginator'" [numVisible]="4"
+                                    [numScroll]="4" [circular]="false" [responsiveOptions]="responsiveOptions">
+
+                                    <ng-template let-product pTemplate="item">
+                                        <div class="product-item">
+                                            <div class="product-item-content">
+                                                <div class="p-mb-3">
+                                                    <img style="height:120px;width:120px;border-radius:50%;object-fit: contain;"
+                                                        src="{{product?.img}}">
+                                                </div>
+
+                                                <p style="padding-top:4%;font-size:20px;font-weight:bold;height:50px">
+                                                    {{product?.first_name}}</p>
+                                                <p style="font-size:12px;">{{product?.designation_name}}</p>
+
+                                                <button class="chatBtn">Chat Now</button>
+
+
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </p-carousel>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-12 " *ngFor="let a of steps;let i = index">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 style="display:inline-block">Step {{i+1}}</h4>
+                            <span *ngIf="a.status =='Pending'" style="border: 1px solid #ff4800;float:right;
+                                            color:#ff4800;padding-left:1%;padding-right:1%;border-radius:8px">
+                                Pending
+                            </span>
+
+                            <span *ngIf="a.status =='In Progress'" style="border: 1px solid #FF9600;float:right;
+                                            color:#FF9600;padding-left:1%;padding-right:1%;border-radius:8px">
+                                In Progress
+                            </span>
+
+
+                            <span *ngIf="a.status =='Completed'" style="border: 1px solid #4FAB52;float:right;
+                                            color:#4FAB52;padding-left:1%;padding-right:1%;border-radius:8px">
+                                <s> Completed</s>
+                            </span>
+                            <br>
+                            <table class="table projects">
+                                <thead>
+                                    <tr>
+                                        <th style="width:5%">
+
+                                        </th>
+                                        <th style="width: 30%;">
+                                            <span>Task Details</span>
+                                        </th>
+                                        <th style="width: 15%">
+                                            Name
+                                        </th>
+                                        <th style="width: 10%">
+                                            Designation
+                                        </th>
+                                        <th style="width: 15%">
+                                            Deadline
+                                        </th>
+                                        <th style="width: 15%">
+                                            Status
+                                        </th>
+                                        <th style="width: 15%">
+                                            Actions
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let b of a.task_details">
+                                        <td style="width:5%">
+                                            <span *ngIf="b.is_important == true">
+                                                <i class="fas fa-check green"></i>
+                                            </span>
+                                        </td>
+                                        <td width="25%">
+
+                                            <span *ngIf="b.task_status ==0">
+                                                {{(b.title.length>50)? (b.title |
+                                                slice:0:50)+'..':(b.title) }}
+                                            </span>
+
+                                            <span *ngIf="b.task_status ==1">
+                                                {{(b.title.length>50)? (b.title |
+                                                slice:0:50)+'..':(b.title) }}
+                                            </span>
+
+
+
+                                            <span *ngIf="b.task_status ==2">
+                                                <s> {{(b.title.length>50)? (b.title |
+                                                    slice:0:50)+'..':(b.title) }}</s>
+                                            </span>
+
+                                        </td>
+                                        <td width="15%">
+                                            <img style="height:30px;width:30px;border-radius:50%;display: inline;margin-right:10px"
+                                                src="{{b.employee_details.img}}">
+                                            <span *ngIf="b.task_status ==0">
+                                                {{b.employee_details.name}}
+                                            </span>
+
+                                            <span *ngIf="b.task_status ==1">
+                                                {{b.employee_details.name}}
+                                            </span>
+
+                                            <span *ngIf="b.task_status ==2">
+                                                <s> {{b.employee_details.name}}</s>
+                                            </span>
+
+                                        </td>
+                                        <td width="15%">
+                                            <span *ngIf="b.task_status ==0">
+                                                {{b.employee_details.designation_name}}
+                                            </span>
+
+                                            <span *ngIf="b.task_status ==1">
+                                                {{b.employee_details.designation_name}}
+                                            </span>
+
+                                            <span *ngIf="b.task_status ==2">
+                                                <s> {{b.employee_details.designation_name}}</s>
+                                            </span>
+
+                                        </td>
+                                        <td width="15%">
+                                            <span *ngIf="b.task_status ==0">
+                                                {{b.deadline}}
+                                            </span>
+
+                                            <span *ngIf="b.task_status ==1">
+                                                {{b.deadline}}
+                                            </span>
+
+                                            <span *ngIf="b.task_status ==2">
+                                                <s> {{b.deadline}}</s>
+                                            </span>
+
+                                        </td>
+                                        <td width="15%">
+                                            <span *ngIf="b.task_status ==0" style="border: 1px solid #ff4800;
+                                            color:#ff4800;padding-left:1%;padding-right:1%;border-radius:8px">
+                                                Pending
+                                            </span>
+
+                                            <span *ngIf="b.task_status ==1" style="border: 1px solid #FF9600;
+                                            color:#FF9600;padding-left:1%;padding-right:1%;border-radius:8px">
+                                                In Progress
+                                            </span>
+
+
+                                            <span *ngIf="b.task_status ==2" style="border: 1px solid #4FAB52;
+                                            color:#4FAB52;padding-left:1%;padding-right:1%;border-radius:8px">
+                                                <s> Completed</s>
+                                            </span>
+                                        </td>
+
+                                        <td width="5%">
+
+                                            <button class="options3" *ngIf="b.task_status ==0 || b.task_status ==1">
+                                                <span *ngIf="b.task_status ==0">
+                                                    <i class="far fa-comment-alt" style="color:#fff"></i>
+                                                </span>
+
+                                                <span *ngIf="b.task_status ==1">
+                                                    <i class="far fa-comment-alt" style="color:#fff"></i>
+                                                </span>
+
+                                                <span *ngIf="b.task_status ==2" style="border: 1px solid #4FAB52;
+                                            color:#4FAB52;padding-left:1%;padding-right:1%;border-radius:8px">
+                                                    <s><i class="far fa-comment-alt" style="color:#fff"></i></s>
+                                                </span>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+            <!---Customer Screen-->
+
+
+            <!-- Main row -->
+            <!---Table-->
+
+            <!--- Admin & Project Manager Screen-->
+            <!-- TABLE: LATEST ORDERS -->
+            <div class="card" *ngIf="role =='project manager' || role =='admin'">
+                <div class="card-header border-transparent">
+                    <h3 class="card-title" style="font-weight:bolder">Pinned Projects</h3>
+                </div>
+
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table m-0">
+                            <thead>
+                                <tr>
+                                    <th style="width: 25%">
+                                        Project Name
+                                    </th>
+                                    <th style="width: 10%">
+                                        Client Name
+                                    </th>
+                                    <th style="width: 10%">
+                                        Start Date
+                                    </th>
+                                    <th style="width: 10%">
+                                        End Date
+                                    </th>
+                                    <th style="width: 15%">
+                                        Status
+                                    </th>
+
+                                    <th style="width: 15%;">
+                                        <span>
+                                            Actions
+                                        </span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let a of project">
+                                    <td width="25%">
+                                        <a style="color:blue"> {{a?.name}}</a>
+                                    </td>
+                                    <td width="10%">
+                                        <!-- {{a.customer.first_name}}   {{a.customer.last_name}} -->
+                                    </td>
+                                    <td width="10%">
+                                        {{a?.start_date}}
+                                    </td>
+                                    <td width="10%">
+                                        {{a?.end_date}}
+                                    </td>
+                                    <td width="15%">
+                                        <span *ngIf="a?.status == '1'" style="border: 1px solid #FF9600;
+                                        color:#FF9600;padding-left:1%;padding-right:1%;border-radius:8px;">
+                                            Pending
+                                        </span>
+                                        <span *ngIf="a?.status == '2'" style="border: 1px solid #4FAB52;
+                                        color:#4FAB52;padding-left:1%;padding-right:1%;border-radius:8px;">
+                                            Completed
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button class="options2"
+                                            *ngIf="role =='admin' || role == 'project manager'|| role == 'customer'"
+                                            (click)="removeFromPinned(a.id)">
+                                            <i class="fas fa-unlink" style="color:white"></i>
+                                        </button>
+                                    </td>
+
+                                </tr>
+                                <tr *ngIf="project.length ==0">
+                                    <h1 style="text-align: center;font-size:20px;padding:5%">No Projects Pinned yet</h1>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+            </div>
+            <!--- Admin & Project Manager Screen-->
+
+
+
+            <!---Admin Screen-->
+            <div class="row" *ngIf="role == 'admin'">
+                <div class="col-md-6">
+                    <!-- DIRECT CHAT -->
+                    <div class="card direct-chat direct-chat-warning" style="height: 400px;">
+                        <div class="card-header">
+                            <h3 class="card-title" style="font-weight:bolder">Recent Chats</h3>
+
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body" style="height: 100%;">
+                            <!-- Conversations are loaded here -->
+                            <div class="direct-chat-messages" style="height: 100%;">
+                                <!-- Message. Default to the left -->
+                                <div class="direct-chat-msg" *ngFor="let a of recentChats">
+
+                                    <!-- /.direct-chat-infos -->
+                                    <img *ngIf="a?.chat_with?.id != shared.customerData.id" class="direct-chat-img"
+                                        (click)="openPersonChat(a?.chat_with)" src="{{a?.chat_with?.img}}"
+                                        alt="message user image">
+
+                                    <img *ngIf="a?.chat_with?.id == shared.customerData.id" class="direct-chat-img"
+                                        (click)="openPersonChat(a?.user)" src="{{a?.user?.img}}"
+                                        alt="message user image">
+                                    <!-- /.direct-chat-img -->
+
+                                    <div>
+                                        <p *ngIf="a?.chat_with?.id != shared.customerData.id"
+                                            (click)="openPersonChat(a?.chat_with)"
+                                            style="font-size:12px;margin-left:50px;color:blue">
+                                            {{a?.chat_with?.first_name}}
+                                            {{a?.chat_with?.last_name}} ({{a?.chat_with?.designation}})<span
+                                                style="float: right;color:black!important">{{a?.created_at |
+                                                amTimeAgo}}</span></p>
+                                        <p *ngIf="a?.chat_with?.id != shared.customerData.id"
+                                            (click)="openPersonChat(a?.chat_with)"
+                                            style="font-size:14p;margin-top: -10px;margin-left:50px">
+                                            {{a?.message}}
+                                        </p>
+
+                                        <p *ngIf="a?.chat_with?.id == shared.customerData.id"
+                                            (click)="openPersonChat(a?.user)"
+                                            style="font-size:12px;margin-left:50px;color:blue">{{a?.user?.first_name}}
+                                            {{a?.user?.last_name}} ({{a?.user?.designation}})<span
+                                                style="float: right;color:black!important">{{a?.created_at |
+                                                amTimeAgo}}</span></p>
+                                        <p *ngIf="a?.chat_with?.id == shared.customerData.id"
+                                            (click)="openPersonChat(a?.user)"
+                                            style="font-size:14p;margin-top: -10px;margin-left:50px">
+                                            {{a?.message}}
+                                        </p>
+
+                                    </div>
+                                    <!-- /.direct-chat-text -->
+                                </div>
+                                <!-- /.direct-chat-msg -->
+
+
+
+
+                                <!--/.direct-chat-messages-->
+
+
+                            </div>
+                            <!-- /.direct-chat-pane -->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer text-center">
+                            <a (click)="openChat()">View All Chats</a>
+                        </div>
+                        <!-- /.card-footer-->
+                    </div>
+                    <!--/.direct-chat -->
+                </div>
+                <!-- /.col -->
+
+
+
+
+
+                <div class="col-md-6">
+                    <div class="card" style="height: 400px;">
+                        <div class="card-header">
+                            <h3 class="card-title" style="font-weight:bolder">Total Employees</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="chartjs-container" style="height: 300px;">
+                                        <canvas baseChart [data]="doughnutChartData" [options]="doughnutChartOptions"
+                                            [legend]="doughnutChartLegend" [labels]="doughnutChartLabels"
+                                            [colors]="doughnutChartColors" [chartType]="doughnutChartType">
+                                        </canvas>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.card-body -->
+                        <!-- <div class="card-footer bg-white p-0">
+                            <ul class="nav nav-pills flex-column">
+                                <li class="nav-item" *ngFor="let a of  labels">
+                                    <a href="#" class="nav-link">
+                                        <div id="outer-circle">
+                                            <div class="inner-circle" [style.background-color]="a.color">
+
+                                            </div>
+                                        </div>
+                                        <span style="margin-left:2%">{{a.label}} </span>
+                                        <span class="float-right"
+                                            [ngStyle]="{'color': a.color, 'font-size': '20px', 'font-weight': 'bold'}">
+
+                                            {{a.value}}</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div> -->
+                        <!-- /.footer -->
+                    </div>
+                    <!--/.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!---Admin Dashboard-->
+
+            <!----Project Manager Screen & Employee Screen-->
+            <div class="row" *ngIf="role == 'project manager' || role == 'employee'">
+                <div class="col-md-12">
+                    <!-- DIRECT CHAT -->
+                    <div class="card direct-chat direct-chat-warning" style="height: 97%;">
+                        <div class="card-header">
+                            <h3 class="card-title" style="font-weight:bolder">Recent Chats</h3>
+
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <!-- Conversations are loaded here -->
+                            <div class="direct-chat-messages">
+                                <!-- Message. Default to the left -->
+                                <div class="direct-chat-msg" *ngFor="let a of recentChats">
+
+                                    <!-- /.direct-chat-infos -->
+                                    <img *ngIf="a?.chat_with?.id != shared.customerData.id" class="direct-chat-img"
+                                        src="{{a?.chat_with?.img}}" alt="message user image"
+                                        (click)="openPersonChat(a?.chat_with)">
+
+                                    <img *ngIf="a?.chat_with?.id == shared.customerData.id" class="direct-chat-img"
+                                        src="{{a?.user?.img}}" alt="message user image"
+                                        (click)="openPersonChat(a?.user)">
+                                    <!-- /.direct-chat-img -->
+
+                                    <div>
+                                        <p *ngIf="a?.chat_with?.id != shared.customerData.id"
+                                            (click)="openPersonChat(a?.chat_with)"
+                                            style="font-size:12px;margin-left:50px;color:blue">
+                                            {{a?.chat_with?.first_name}}
+                                            {{a?.chat_with?.last_name}} ({{a?.chat_with?.designation}})<span
+                                                style="float: right;color:black!important">{{a?.created_at |
+                                                amTimeAgo}}</span></p>
+                                        <p *ngIf="a?.chat_with?.id != shared.customerData.id"
+                                            (click)="openPersonChat(a?.chat_with)"
+                                            style="font-size:14p;margin-top: -10px;margin-left:50px">
+                                            {{a?.message}}
+                                        </p>
+
+                                        <p *ngIf="a?.chat_with?.id == shared.customerData.id"
+                                            (click)="openPersonChat(a?.user)"
+                                            style="font-size:12px;margin-left:50px;color:blue">{{a?.user?.first_name}}
+                                            {{a?.user?.last_name}} ({{a?.user?.designation}})<span
+                                                style="float: right;color:black!important">{{a?.created_at |
+                                                amTimeAgo}}</span></p>
+                                        <p *ngIf="a?.chat_with?.id == shared.customerData.id"
+                                            (click)="openPersonChat(a?.user)"
+                                            style="font-size:14p;margin-top: -10px;margin-left:50px">
+                                            {{a?.message}}
+                                        </p>
+
+                                    </div>
+                                    <!-- /.direct-chat-text -->
+                                </div>
+                                <!-- /.direct-chat-msg -->
+
+
+                                <!-- /.direct-chat-msg -->
+
+
+                                <!--/.direct-chat-messages-->
+
+
+                            </div>
+                            <!-- /.direct-chat-pane -->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer text-center">
+                            <a href="admin/chat">View All Chats</a>
+                        </div>
+                        <!-- /.card-footer-->
+                    </div>
+                    <!--/.direct-chat -->
+                </div>
+            </div>
+            <!----Project Manager Screen-->
+
+
+        </div>
+    </section>
+    <!-- /.row -->
+</div>
+<!-- /.content -->
+
+
+<!-- /.content-wrapper -->
+
+
+<ng-template #checkboxModal let-modal>
+
+    <div class="modal-body">
+        <div class="row" class="margin-bottom:2%">
+            <div class="col-md-12">
+                <div style="text-align: center;">
+                    <label>Are you sure this task has been done?</label>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row" style="padding-top:5%;padding-bottom:5%">
+            <div class="col-md-6">
+                <button class="btn submitBtn" (click)="TaskDone()">
+                    Add
+                </button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn cancelBtn" (click)="TaskCancel()">
+                    Cancel
+                </button>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+</ng-template>
+
+
+<!---Customer Screen-->
+<ng-template #projectModal let-modal>
+
+    <div class="modal-body rounded-20">
+        <div class="row" class="margin-bottom:2%">
+
+            <div class="col-md-12">
+                <h4 style="text-align: center;">{{data.name}}</h4>
+
+
+                <p style="color:#2196F3;font-size:12px;display: inline-flex;padding-left:20%">Starting Date: <span
+                        style="color:black;margin-left:10px">{{data.start_date}}</span></p>
+                <p style="margin-left:5%;color:#2196F3;font-size:12px;display: inline-flex">Completing Date:
+                    <span style="color:black;margin-left:10px"> {{data.end_date}}</span>
+                </p>
+                <p style="margin-left:5%;color:#2196F3;font-size:12px;display: inline-flex">Working Days: <span
+                        style="color:black;margin-left:10px"> 25 Days</span></p>
+
+            </div>
+            <div class="col-md-6" style="display: inline-flex!important;">
+
+                <div class="small-box bg-primary" style="width:100%">
+                    <div class="inner">
+                        <h4 style="text-align: center;">Project Offer</h4>
+
+                        <p style="text-align: center;">This is your project offer.</p>
+
+                    </div>
+
+
+
+                    <a (click)="opencompletedTasks()" class="small-box-footer">Download <i
+                            class="fas fa-arrow-circle-down"></i></a>
+                </div>
+            </div>
+
+            <div class="col-md-6" style="display: inline-flex!important;">
+
+
+
+
+                <div class="small-box bg-success" style="width:100%">
+                    <div class="inner">
+                        <h4 style="text-align: center;">Project Drawing</h4>
+
+                        <p style="text-align: center;">This is your project drawing.</p>
+
+                    </div>
+                    <a (click)="opencompletedTasks()" class="small-box-footer">Download
+                        <i class="fas fa-arrow-circle-down"></i></a>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <h3 style="text-align: center;">Team Members</h3>
+            </div>
+
+            <div class="col-md-12" style="padding-left:1%;padding-right:1%">
+                <p-carousel [value]="data.employee" [ngClass]="'p-hide-paginator'" [numVisible]="4" [numScroll]="4"
+                    [circular]="false" [responsiveOptions]="responsiveOptions">
+
+                    <ng-template let-product pTemplate="item">
+                        <div class="product-item" style="margin-left:10%">
+                            <div class="product-item-content">
+                                <div style="text-align:center">
+                                    <div class="p-mb-3">
+                                        <img style="height:120px;margin-left:10px;width:120px;border-radius:50%"
+                                            src="{{product.img}}">
+                                    </div>
+
+                                    <p
+                                        style="padding-top:4%;margin-top:-10px;font-size:20px;font-weight:bold;height:50px;text-align: center;">
+                                        {{product.first_name}}</p>
+                                    <p style="font-size:12px;margin-top:10px;text-align: center;">
+                                        {{product.designation}}</p>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-carousel>
+            </div>
+
+        </div>
+
+
+
+
+
+        <div class="row" style="padding-bottom:2%">
+            <div class="col-md-2"></div>
+            <div class="col-md-8" style="text-align: center;">
+                <button class="submitBtn" (click)="acceptProject(data.id)">
+                    OK
+                </button>
+
+                <button class="cancelBtn" (click)="rejectProject(data.id)">
+                    Cancel
+                </button>
+            </div>
+            <div class="col-md-2"></div>
+
+
+        </div>
+    </div>
+
+
+</ng-template>
+
+<!---Customer Screen-->

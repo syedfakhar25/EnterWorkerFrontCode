@@ -1,0 +1,398 @@
+<!-- Content Wrapper. Contains page content -->
+<div >
+    <!-- Content Header (Page header) -->
+    <div class="curve">
+        <p></p>
+    </div>
+    <!-- Content Header (Page header) -->
+    <div class="row">
+        <div class="col-md-3">
+            <h3 class="heading"><strong>Employee Profile</strong></h3>
+        </div>
+
+        <div class="col-md-3">
+
+        </div>
+
+        <div class="col-md-6" style="text-align: right;">
+
+            <!-- <div class="dropdown" style="display: inline-block;margin-left:10%;">
+                <button class="drpBtn">
+                    <img style="height:30px;width:40px;margin-top:-20px" src="../../../../../assets/img/en.png">
+                </button>
+                <div class="dropdown-content">
+                    <a (click)="changeLang('../../../../../assets/images/en.png','en')"><img
+                            style="height:30px;width:50px;" src="../../../../../assets/img/en.png"></a>
+                    <a (click)="changeLang('../../../../../assets/images/no.png','no')"><img
+                            style="height:30px;width:50px;" src="../../../../../assets/img/en.png"></a>
+
+                </div>
+            </div> -->
+
+            <div class="dropdown" style="display: inline-block;">
+                <button class="drpbtn" style=" background-color: transparent!important">
+                    <i class="fas fa-bell icon" style="color:black!important"></i>
+                </button>
+                <div class="dropdown-content2">
+
+                    <button class="button1"> No Today's Events</button>
+                </div>
+            </div>
+
+            <div class="dropdown1" style="display: inline-block;">
+                <button class="drpbtn" style=" background-color: transparent!important">
+                    <img src="{{shared.customerData.img}}" class="img-circle profile-pic" alt="User Image">
+                </button>
+                <div class="dropdown-content1">
+
+                    <button class="button1" (click)="logout()">Logout</button>
+                </div>
+            </div>
+
+
+
+
+            <h3 class="profile">
+                {{shared.customerData.first_name}} {{shared.customerData.last_name}}
+                <br>
+                <span class="small-text">{{shared.customerData.designation}}</span>
+
+
+            </h3>
+
+            <div class="dropdown" style="display: inline-block;">
+                <button class="drpbtn" style=" background-color: transparent!important">
+                    <i class="fas fa-cog icon" style="color:black!important"></i>
+                </button>
+                <div class="dropdown-content2">
+
+                    <button class="button1"> No Setting Available</button>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+    <section class="content" style="margin-top:1%;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card p-2 card1">
+                        <div class="card-header">
+                            <img src="{{imageSrc}}" class="img-circle profile-img">
+                            <p style="font-size:25px;color:black;font-weight: 400;text-align: center;padding-top:2%">{{firstname.value}} {{lastname.value}}</p>
+                            <div class="row " style="padding-top:5%">
+                                <div class="col-md-6">
+                                    <p style="font-size:15px;color:black;font-weight: 400;text-align: left;margin-left:50%">
+                                        <a style="color:blue;margin-right:2%">Phone Number:</a> {{phone.value}}
+                                    </p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p style="font-size:15px;color:black;font-weight: 400;text-align:left;margin-left:25%;">
+                                        <a style="color:blue;margin-right:2%">Email:</a> {{email.value}}
+                                    </p>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <p style="font-size:15px;color:black;font-weight: 400;text-align: left;margin-left:50%">
+                                        <a style="color:blue;margin-right:2%">Designation:</a> {{designation.value}}
+                                    </p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p style="font-size:15px;color:black;font-weight: 400;text-align: left;margin-left:25%;">
+                                        <a style="color:blue;margin-right:2%">Joining Date:</a> {{joining_date.value | date}}
+                                    </p>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        <div class="card-body" style="text-align: center;">
+                           <button class="chatBtn" (click)="openChat(Data)">Chat Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12" >
+                  
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">All Tasks</h3>
+
+                           
+                            
+
+
+                        </div>
+                        <div class="card-body p-0">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10%">
+                                            Project Name
+                                        </th>
+                                        
+                                       
+                                        <th style="width: 10%">
+                                            Deadline
+                                        </th>
+                                        <th style="width: 10%">
+                                            Status
+                                        </th>
+                                        
+                                        <!-- <th style="width: 10%;">
+                                            Actions
+                                        </th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let a of Projects | slice: (page1-1) * pageSize1 : page1 * pageSize1">
+                                        <td style="width: 10%" (click)="openDetails(a.project_id)">
+                                           
+                                            <span style="color:blue"> {{a.name}}</span>
+                                        </td>
+                                       
+                                        
+                                        <td style="width: 10%">{{a.end_date}}
+                                            
+                                        </td>
+                                        <td style="width: 10%">
+                                            <span *ngIf="a?.status == '1'" style="border: 1px solid #FF9600;
+                                            color:#FF9600;padding-left:1%;padding-right:1%;border-radius:8px;">
+                                                Pending
+                                            </span>
+                                            <span  *ngIf="a?.status == '2'" style="border: 1px solid #4FAB52;
+                                            color:#4FAB52;padding-left:1%;padding-right:1%;border-radius:8px;">
+                                                Completed
+                                            </span>
+                                            
+                                        </td>
+                                       
+                                       
+                                        <!-- <td>
+                                          
+                                            <button class="options1">
+                                                <i class="fas fa-pencil-alt" style="color:#fff"></i>
+                                            </button>
+                                            <button class="options2">
+                                                <i class="fas fa-trash-alt" style="color:#fff"></i>
+                                            </button>
+                                        </td> -->
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            <div class="d-flex justify-content-between p-4 pagination">
+                                <ngb-pagination [collectionSize]="Tasks.length" [pageSize]="pageSize1"  [(page)]="page1" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+                              </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- Small boxes (Stat box) -->
+
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.row -->
+
+    <!-- /.content -->
+</div>
+
+<!-- /.content-wrapper -->
+
+
+
+<!-- <ng-template #addteammemberModal let-modal>
+    <div class="modal-header" >
+      <h4 class="modal-title" id="modal-basic-title" style="color:black;font-size:24px;margin-top:2%">Add Team Members
+      </h4>
+  
+      <button style="background-color: transparent;margin-left:30%;border:none;margin-top:3%;">
+        <label >Search:</label>
+      </button>
+      
+      <input type="text" class="Search">
+    </div>
+    <div class="modal-body bady">
+        <table class="table popUp-table">
+            <thead>
+                <tr>
+                    <th style="width: 10%">
+                        
+                    </th>
+                    <th style="width: 5%">
+                       
+                    </th>
+                    
+                    <th style="width: 5%">
+                        Name
+                    </th>
+                    <th style="width: 10%">
+                        Designation
+                    </th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let a of Employees ">
+                    <td style="width: 10%">
+                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                    </td>
+
+                    <td style="width: 5%">
+                        <img alt="Avatar" class="table-avatar" src="{{a.image}}">
+                    </td>
+                    <td style="width: 10%">
+                        {{a.name}}
+                        
+                    </td>
+                    
+                    <td style="width: 10%">
+                        {{a.designation}}
+                    </td>
+                   
+                </tr>
+
+            </tbody>
+        </table>
+        <div class="row" style="padding-top:2%;padding-bottom:5%">
+            <div class="col-md-6">
+                <button class="btn submitBtn" (click)="modal.close('okay')">
+                    Add
+                </button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn cancelBtn" (click)="modal.close('okay')" >
+                    Cancel
+                 </button>
+            </div>
+               
+            
+            
+            </div>
+      
+    </div>
+   
+  
+  </ng-template> -->
+
+
+   <!--- Add Task From Team Members-->
+   <!-- <ng-template #addtaskfromTMModal let-modal>
+    <div class="modal-header" >
+      <h4 class="modal-title" id="modal-basic-title" style="color:black;font-size:24px;margin-top:2%">Add Task
+      </h4>
+  
+      
+    </div>
+    <div class="modal-body bady">
+
+        <div class="row">
+            <div class="col-md-12">
+                <label style=" margin-left:7%;">Title</label>
+                <input type="text"  class="inp">
+            </div>
+        </div>
+
+        <div class="row" style="padding-top:5%">
+            <div class="col-md-6">
+                <label style=" margin-left:15%;">Deadline</label>
+                    <input type="date"  class="input">
+               
+            </div>
+
+            <div class="col-md-6">
+                <div class="col-md-6">
+                    <label style=" margin-left:10%;">Percentage</label>
+                    <input type="text"  class="input2">
+                </div>
+                
+            </div>
+        </div>
+
+       
+        <div class="row" style="padding-top:10%;padding-bottom:5%">
+            <div class="col-md-6">
+                <button class="btn submitBtn" (click)="modal.close('okay')">
+                    Add
+                </button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn cancelBtn" (click)="modal.close('okay')" >
+                    Cancel
+                 </button>
+            </div>
+               
+            
+            
+            </div>
+        </div>
+
+  </ng-template> -->
+
+  <!--- Add Task-->
+  <!-- <ng-template #addtaskModal let-modal>
+    <div class="modal-header" >
+      <h4 class="modal-title" id="modal-basic-title" style="color:black;font-size:24px;margin-top:2%">Add Task
+      </h4>
+  
+      
+    </div>
+    <div class="modal-body bady">
+
+        <div class="row">
+            <div class="col-md-12">
+                <label style=" margin-left:7%;">Title</label>
+                <input type="text"  class="inp">
+            </div>
+        </div>
+
+        <div class="row" style="padding-top:5%">
+            <div class="col-md-6">
+                <label style=" margin-left:15%;">Employee Name</label>
+                <select class="input" style="box-shadow: none;" >
+
+                    <option value="jacob">Jacob</option>
+                    <option value="tiler">Tiler</option>
+                    <option value="electrician">Electrician</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <div class="col-md-6">
+                    <label style=" margin-left:10%;">Deadline</label>
+                    <input type="date"  class="input2">
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="row" style="padding-top:2%">
+            <div class="col-md-6">
+                <label style="margin-left:15%;">Percentage</label>
+                <input type="text"  class="input">
+            </div>
+        </div>
+        <div class="row" style="padding-top:5%;padding-bottom:5%">
+            <div class="col-md-6">
+                <button class="btn submitBtn" (click)="modal.close('okay')">
+                    Add
+                </button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn cancelBtn" (click)="modal.close('okay')" >
+                    Cancel
+                 </button>
+            </div>
+               
+            
+            
+            </div>
+        </div>
+
+  </ng-template> -->

@@ -1,0 +1,77 @@
+<div class="customer-background-color">
+    <div class="curve">
+        <p></p>
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <div class="heading">
+                        <span>
+                            <h1 class="heading-styles">Please look at project points and accept<br> the project after
+                                complete analysis.</h1>
+                        </span>
+                    </div>
+                    <div class="body">
+                        <div class="pink_card">
+                            <span class="offer_button">
+                                <img width="795" height="275px" style="margin-bottom: 30px;margin-top: 22px;"
+                                    src="/assets/img/avatars/customer-timeLine-avatar.svg">
+                                <button class="btn btn-danger offer_button_btn" (click)="viewTimeLine(timeLine)">
+                                    Timeline
+                                </button>
+                            </span>
+                        </div>
+                        <div class="lower_section">
+                            <textarea [(ngModel)]="timeLineComment" class="comment_section"
+                                placeholder="Leave comment for important information about project"></textarea>
+                            <button [disabled]="!disableNextButton" class="btn btn-danger offer_button_btn"
+                                style="margin-top: 30px;" (click)='postProjecTimeLineComment()'>
+                                Next
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+<ng-template #timeLine let-modal>
+    <div class="modal-header" style="justify-content: center;border-bottom: none;">
+        <h4 class="modal-title" id="modal-basic-title"
+            style="color:black;font-size:24px;margin-top:2%; font-size: 600;">
+            Project Timeline
+        </h4>
+    </div>
+    <div class="modal-body ">
+        <div class="lower_section">
+            <div class="time_line row" style="width: 90%;">
+                <div class="col-lg-5 time_line_row">
+                    <span class="time_text">Starting Date:</span>
+                    <span class="time_values">{{this.projectTimeLine?.start_date}}</span>
+                </div>
+                <div class="col-lg-4 time_line_row">
+                    <span class="time_text">Ending Date:</span>
+                    <span class="time_values">{{this.projectTimeLine?.end_date}}</span>
+                </div>
+                <div class="col-lg-3 time_line_row" style="text-align: right;">
+                    <span class="time_text">Working Days:</span>
+                    <span class="time_values">{{workingDays}}</span>
+                </div>
+                <p style="color: black;padding-top: 50px;margin:0;padding-left: 24px;">
+                    In case of change, extra order, or extra work, the cost or time will be updated accordingly.
+                </p>
+            </div>
+            <div class="accept_section">
+                <button class="btn btn-danger offer_button_btn" style="margin-top: 30px;" (click)="modal.close('okay'); acceptOffer()">
+                    Accept
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+
+</ng-template>

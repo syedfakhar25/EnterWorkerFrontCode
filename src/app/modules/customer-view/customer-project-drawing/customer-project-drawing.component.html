@@ -1,0 +1,59 @@
+<div class="customer-background-color">
+    <div class="curve">
+        <p></p>
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <div class="heading">
+                        <span>
+                            <h1 class="heading-styles">Please look at project points and accept<br> the project after complete analysis.</h1>
+                        </span>
+                    </div>
+                    <div class="body">
+                            <div class="pink_card">
+                                <span class="offer_button">
+                                    <img width="795" height="275px" style="margin-bottom: 30px;margin-top: 22px;" src="/assets/img/avatars/customer-drawing-avatar.svg">
+                                    <button class="btn btn-danger offer_button_btn" (click)="viewProjectOffer(viewDrawing)">
+                                        Drawing
+                                    </button>
+                                </span>
+                            </div>
+                            <div class="lower_section">
+                                <textarea class="comment_section" [(ngModel)]="drawingComment"  placeholder="Leave comment for important information about project"></textarea>
+                                <button [disabled]="!disableNextButton"  class="btn btn-danger offer_button_btn" style="margin-top: 30px;" (click)='postProjectDrawingComment()'>
+                                    Next
+                                </button>
+                            </div>                            
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+<ng-template #viewDrawing let-modal>
+    <div class="modal-header" [style.text-align]="'center'">
+        <h1></h1>
+
+        <button
+            style="background-color: transparent;border:none;font-size:20px;color:#C22B30;outline:0;float:right!important"
+            (click)="modal.close()">
+            <i class="fas fa-times"></i>
+        </button>
+
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <div [innerHTML]="projectDrawing | safe: 'html'" class="pdf1"></div>
+            </div>
+        </div>
+    </div>
+
+</ng-template>

@@ -1,0 +1,165 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Tasks</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">
+                            <div>{{currentDate | date:'dd-MM-yyyy'}}
+                                <br>
+                                <span style="font-size:15px">{{ rxTime | date: 'hh:mm:ss a' }}</span> 
+                            </div>
+                        </li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="card">
+                <div class="card-header" >
+                  <h3 class="card-title" >All Tasks</h3>
+        
+                  <span class="card-title" style="display: inline-flex;margin-left:5%;">Search:</span>
+                  <input type="text" class="Search" >
+                    
+                  
+                 
+                </div>
+                <div class="card-body p-0">
+                  <table class="table projects">
+                      <thead>
+                          <tr >
+                              <th style="width: 20%">
+                                  Task Details
+                              </th>
+                              <th style="width: 10%">
+                                Project Name
+                              </th>
+                              <th style="width: 10%">
+                                  Customer Name
+                              </th>
+                              <th style="width: 10%">
+                                  Customer Address
+                              </th>
+                              <th style="width: 10%" >
+                                  Deadline
+                              </th>
+                              <th style="width: 10%" >
+                               Action
+                            </th>
+                              
+
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let a of tasks | slice: (page-1) * pageSize : page * pageSize">
+                              <td>
+                               {{a.title}}
+                              </td>
+                              <td>
+                                <a (click)="viewProjectDetails(a.project?.id)" style="color:blue"> {{a.project?.name}}</a> 
+                              </td>
+                              <td>
+                                  {{a.project?.customer?.first_name}}  {{a.project?.customer?.last_name}}
+                              </td>
+                              <td >
+                                {{a.project?.street}} {{a.project?.city}}
+                              </td>
+                             
+                              <td >
+                                 {{a.deadline}}
+                              </td>
+                              <td >
+                                <button class="options1"  (click)="EditTask(edittaskfromTMModal,a)">
+                                    <i class="fas fa-pencil-alt" style="color:#fff"></i>
+                                </button>
+                             </td>
+                             
+                          </tr>
+                         
+                      </tbody>
+                  </table>
+                  <div class="d-flex justify-content-between p-4 pagination">
+                    <ngb-pagination [collectionSize]="tasks.length" [pageSize]="pageSize"  [(page)]="page" [maxSize]="20" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+      
+        </div>
+    </section>
+            <!-- /.row -->
+
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+
+
+        <!---Edit Task Modal-->
+<ng-template #edittaskfromTMModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title" style="color:black;font-size:24px;margin-top:2%">Edit Task Status
+        </h4>
+
+
+    </div>
+    <div class="modal-body bady">
+
+        <div class="row">
+            <div class="col-md-12">
+               <label style="font-size:15px">Task Title:</label>
+               <h1 style="font-size:15px;text-align:left">{{tasktitle}}</h1>
+            </div>
+        </div>
+
+        <div class="row" style="padding-top:5%">
+        
+            <div class="col-md-12">
+                <label style="font-size:15px">Task Status</label>
+                <select class="input" style="box-shadow: none;" [formControl]="status">
+
+                    <option value="1">
+                        <span>Completed</span>
+                    </option>
+                    <option value="0">
+                        <span>Pending</span>
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="row" style="padding-top:10%;padding-bottom:5%">
+            <div class="col-md-6">
+                <button class="btn submitBtn" (click)="ChangeStatus()">
+                    Edit
+                </button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn cancelBtn" (click)="modal.close('okay')">
+                    Cancel
+                </button>
+            </div>
+
+
+
+        </div>
+    </div>
+
+</ng-template>

@@ -1,0 +1,12 @@
+.input-special-class{
+    width: 82.4% !important;
+    margin-left: 7.5% !important;
+}
+
+.textarea-styles{
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: grey;
+    margin-right: 5%;
+    height: 30px;
+}

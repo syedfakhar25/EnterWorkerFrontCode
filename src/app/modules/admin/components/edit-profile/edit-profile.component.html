@@ -1,0 +1,134 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Edit Profile</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">
+                            <div>{{currentDate | date:'dd-MM-yyyy'}}
+                                <br>
+                                <span style="font-size:15px">{{ rxTime | date: 'hh:mm:ss a' }}</span> 
+                            </div>
+                        </li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="card">
+                
+                <div class="card-body p-0">
+                  <!--Profile Image-->
+                  
+                  <img [src]="imageSrc" *ngIf="imageSrc"  class="img-circle profile">
+                  <img class="img-circle profile" *ngIf="!imageSrc" src="../../../../../assets/img/defaultavatar.png">
+                  <button class="uploadBtn">
+                    <input 
+                  
+                    type="file" 
+                    accept="image"
+                    id="selectedFile"
+                    (change)="onFileChange($event)" style="display: none;">
+                    <i class="fas fa-camera"  onclick="document.getElementById('selectedFile').click();"></i>
+                  </button>
+                  <p style="text-align: center;">Upload your Image</p>
+                  <p style="text-align: center;color:red;font-size:14px;margin-top:-10px">Max size is 2 mb*</p>
+
+                  <div class="row" style="padding-top:5%">
+                      <div class="col-md-6">
+                          <input type="text" placeholder="First Name" class="input" [formControl]="firstname">
+                      </div>
+
+                      <div class="col-md-6">
+                        <input type="text" placeholder="Last Name" class="input2" [formControl]="lastname">
+                    </div>
+                  </div>
+
+                  <div class="row" style="padding-top:2%">
+                    <div class="col-md-6">
+                        <input type="text" placeholder="Email" class="input" [formControl]="email">
+                    </div>
+
+                    <div class="col-md-6">
+                      <input type="number" onkeydown="javascript: return event.keyCode == 69 ? false : true" placeholder="Telephone" class="input2" [formControl]="phone">
+                  </div>
+                </div>
+
+                <div class="row" style="padding-top:2%;">
+                    <div class="col-md-6">
+                        <input type="password" placeholder="Password" class="input" [formControl]="password">
+                    </div>
+
+                    <div class="col-md-6">
+                      <input type="password" placeholder="Confirm Password" class="input2" [formControl]="password_confirmation">
+                  </div>
+                </div>
+
+                <div class="row" style="padding-top:2%">
+                    <div class="col-md-6">
+                        <select class="input custom-select" style="box-shadow: none;" [formControl]="gender">
+                            
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                           
+                          </select>
+
+                    </div>
+
+                    <div class="col-md-6" *ngIf="role == 'employee'|| role == 'project manager' ">
+                        <select class="input2 custom-select" style="box-shadow: none;" [formControl]="designation">
+                            
+                            <option *ngIf="role == 'employee'" value="carpenter">Carpenter</option>
+                            <option *ngIf="role == 'employee'"  value="tiler">Tiler</option>
+                            <option *ngIf="role == 'employee'"  value="electrician">Electrician</option>
+
+                            <option *ngIf="role == 'project manager'" value="project manager">Project Manager</option>
+                           
+                          </select>
+                      
+                  </div>
+
+                  
+                </div>
+
+                  
+
+                <div class="row" style="padding-top:2%;padding-bottom:2%">
+                <div class="col-md-6">
+                    <button class="submitBtn" (click)="submit(fileSource)">
+                        Submit
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <button class="cancelBtn"  (click)="cancel()">
+                        Cancel
+                     </button>
+                </div>
+                   
+                
+                
+                </div>
+                
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+      
+        </div>
+    </section>
+            <!-- /.row -->
+
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->

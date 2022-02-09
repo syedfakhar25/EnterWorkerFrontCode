@@ -1,0 +1,1861 @@
+<!-- Content Wrapper. Contains page content -->
+<div>
+    <div class="curve">
+        <p></p>
+    </div>
+    <!-- Content Header (Page header) -->
+    <div class="row">
+        <div class="col-md-3">
+            <h3 class="heading"><strong>Project Details</strong></h3>
+        </div>
+
+        <div class="col-md-3">
+
+        </div>
+
+        <div class="col-md-6" style="text-align: right;">
+
+            <!-- <div class="dropdown" style="display: inline-block;margin-left:10%;">
+                <button class="drpBtn">
+                    <img style="height:30px;width:40px;margin-top:-20px" src="../../../../../assets/img/en.png">
+                </button>
+                <div class="dropdown-content">
+                    <a (click)="changeLang('../../../../../assets/images/en.png','en')"><img
+                            style="height:30px;width:50px;" src="../../../../../assets/img/en.png"></a>
+                    <a (click)="changeLang('../../../../../assets/images/no.png','no')"><img
+                            style="height:30px;width:50px;" src="../../../../../assets/img/en.png"></a>
+
+                </div>
+            </div> -->
+
+            <div class="dropdown" style="display: inline-block;">
+                <button class="drpbtn" style=" background-color: transparent!important">
+                    <i class="fas fa-bell icon" style="color:black!important"></i>
+                </button>
+                <div class="dropdown-content2">
+
+                    <button class="button1"> No Today's Events</button>
+                </div>
+            </div>
+
+            <div class="dropdown1" style="display: inline-block;">
+                <button class="drpbtn" style=" background-color: transparent!important">
+                    <img src="{{shared.customerData.img}}" class="img-circle profile-pic" alt="User Image">
+                </button>
+                <div class="dropdown-content1">
+
+                    <button class="button1" (click)="logout()">Logout</button>
+                </div>
+            </div>
+
+
+
+
+            <h3 class="profile">
+                {{shared.customerData.first_name}} {{shared.customerData.last_name}}
+                <br>
+                <span class="small-text">{{shared.customerData.designation}}</span>
+
+
+            </h3>
+
+            <div class="dropdown" style="display: inline-block;">
+                <button class="drpbtn" style=" background-color: transparent!important">
+                    <i class="fas fa-cog icon" style="color:black!important"></i>
+                </button>
+                <div class="dropdown-content2">
+
+                    <button class="button1"> No Setting Available</button>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content" style="margin-top:1%;">
+        <div class="container-fluid">
+            <div class="row" *ngIf="role == 'admin'|| role == 'project manager' || role=='customer'">
+                <div class="col-lg-8 ">
+                    <div class="card" style="padding:2%">
+                        <div classs="card-body" style="height:340px">
+                            <h4>{{projectDetails?.name}}</h4>
+
+
+                            <p style="color:blue;font-size:12px;display: inline-flex">Client Name: <span
+                                    style="color:black;margin-left:10px"> {{projectDetails?.customer?.first_name}}
+                                    {{projectDetails?.customer?.last_name}}</span></p>
+                            <p style="margin-left:5%;color:blue;font-size:12px;display: inline-flex">Email:
+                                <span style="color:black;margin-left:10px"> {{projectDetails?.customer?.email}}</span>
+                            </p>
+                            <p style="margin-left:5%;color:blue;font-size:12px;display: inline-flex">Phone Number: <span
+                                    style="color:black;margin-left:10px"> {{projectDetails?.customer?.phone}}</span></p>
+                            <br>
+                            <p style="color:blue;font-size:12px;display: inline-flex">Address: <span
+                                    style="color:black;margin-left:10px;"> {{projectDetails?.street}},
+                                    {{projectDetails?.city}}</span></p>
+
+
+                            <p style="margin-left:2%;color:blue;font-size:12px;display: inline-flex">Starting Date:
+                                <span style="color:black;margin-left:10px"> {{projectDetails?.start_date |
+                                    date:'shortDate'}}</span>
+                            </p>
+                            <p style="margin-left:5%;color:blue;font-size:12px;display: inline-flex">Completing Date:
+                                <span style="color:black;margin-left:10px"> {{projectDetails?.end_date |
+                                    date:'shortDate'}}</span>
+                            </p>
+                            <p style="margin-left:5%;color:blue;font-size:12px;display: inline-flex">Working Days: <span
+                                    style="color:black;margin-left:10px"> {{workingdays}}</span></p>
+
+                            <h4>Description</h4>
+                            <p style="font-size:12px;color:black">
+                                {{projectDetails?.description}}
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 ">
+                    <div class="card" style="padding:2%">
+                        <div class="card-body" style="height:360px">
+                            <div class="small-box bg-primary" *ngIf="projectDetails?.project_offer == null"
+                                (click)="openFileUploader(uploadFilemodal,projectDetails?.id)">
+                                <div class="inner">
+                                    <h4 style="text-align: center;">Project Offer</h4>
+
+                                    <p style="text-align: center;">Upload your project offer.
+
+                                    </p>
+
+
+                                </div>
+
+                                <a class="small-box-footer">Upload
+                                    <i class="fas fa-arrow-circle-up"></i></a>
+                            </div>
+
+
+
+
+                            <div class="small-box bg-primary" *ngIf="projectDetails?.project_offer != null"
+                                (click)="download()">
+                                <div class="inner">
+                                    <h4 style="text-align: center;">Project Offer</h4>
+
+                                    <p style="text-align: center;">Download your project offer.
+
+                                    </p>
+
+                                </div>
+                                <a class="small-box-footer">Download
+                                    <i class="fas fa-arrow-circle-down"></i></a>
+                            </div>
+
+
+
+
+                            <div class="small-box bg-success" *ngIf="projectDetails?.project_drawing ==null"
+                                (click)="openFileUploader2(uploadFilemodal2,projectDetails?.id)">
+                                <div class="inner">
+                                    <h4 style="text-align: center;">Project Drawing</h4>
+
+                                    <p style="text-align: center;">Upload your project drawing.</p>
+
+                                </div>
+                                <a class="small-box-footer">Upload
+                                    <i class="fas fa-arrow-circle-up"></i></a>
+                            </div>
+
+                            <div class="small-box bg-success" *ngIf="projectDetails?.project_drawing !=null">
+                                <div class="inner">
+                                    <h4 style="text-align: center;">Project Drawing</h4>
+
+                                    <p style="text-align: center;">Download your project drawing.</p>
+
+                                </div>
+                                <a class="small-box-footer">Download
+                                    <i class="fas fa-arrow-circle-down"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="col-lg-4 ">
+                    <div class="card">
+                        <div class="card-body" style="height:350px;">
+
+                            <h4 style="display:inline-block;text-align:left!important;">Project Manager</h4>
+                            <button class="addBtn"
+                                
+                                (click)="addMember(addPMModal)">
+                                <i class="fas fa-user-plus"></i>
+                            </button>
+                            <br>
+                            <div style="text-align: center;">
+                                <p-carousel [value]="allProjectManagers" [ngClass]="'p-hide-paginator'" [numVisible]="1"
+                                    [numScroll]="1" [circular]="false" [responsiveOptions]="responsiveOptions">
+
+                                    <ng-template let-product pTemplate="item">
+                                        <div class="product-item">
+                                            <div class="product-item-content">
+                                                <div class="p-mb-3">
+                                                    <img style="height:120px;width:120px;border-radius:50%;object-fit: contain;"
+                                                        src="{{product.img}}">
+                                                </div>
+
+                                                <p style="padding-top:4%;font-size:20px;font-weight:bold;height:50px;">
+                                                    {{(product.first_name!=null || product?.first_name!='') ? product.first_name: ''}}
+                                        {{product?.last_name}}</p>
+
+                                                <p style="font-size:12px;">{{product.designation_name}}</p>
+
+                                                <!-- <button class="chatBtn2">Chat Now</button> -->
+
+
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </p-carousel>
+                            </div>
+                            <!-- <div style="text-align: center;"
+                                *ngIf="projectDetails?.manager != null || projectDetails?.manager != undefined">
+                                <img style="height:150px;object-fit: contain;width:150px;border-radius:50%"
+                                    src="{{projectDetails?.manager?.img}}">
+                                <p style="padding-top:4%;font-size:20px;font-weight:bold">
+                                    {{projectDetails?.manager?.first_name}} {{projectDetails?.manager?.last_name}}</p>
+                                <p style="font-size:12px;margin-top:-10px">Project Manager</p>
+                                <button class="chatBtn2">Chat Now</button>
+                            </div> -->
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-8 ">
+                    <div class="card">
+                        <div class="card-body" style="height:350px">
+                            <h4 style="text-align:left!important;display: inline-block;">Team Members</h4>
+                            <button class="addBtn" (click)="addMember(addteammemberModal)">
+                                <i class="fas fa-user-plus"></i>
+                            </button>
+                            <br>
+                            <div style="text-align: center;">
+                                <p-carousel [value]="Employees" [ngClass]="'p-hide-paginator'" [numVisible]="4"
+                                    [numScroll]="4" [circular]="false" [responsiveOptions]="responsiveOptions">
+
+                                    <ng-template let-product pTemplate="item">
+                                        <div class="product-item">
+                                            <div class="product-item-content">
+                                                <div class="p-mb-3">
+                                                    <img style="height:120px;width:120px;border-radius:50%;object-fit: contain;"
+                                                        src="{{product.img}}">
+                                                </div>
+
+                                                <p style="padding-top:4%;font-size:20px;font-weight:bold;height:50px;">
+                                                    {{(product.first_name!=null || product?.first_name!='') ? product.first_name: ''}}
+                                        {{product?.last_name}}</p>
+
+                                                <p style="font-size:12px;">{{product.designation_name}}</p>
+
+                                                <!-- <button class="chatBtn2">Chat Now</button> -->
+
+
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </p-carousel>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-4 " *ngIf="role == 'admin'">
+                    <div class="card">
+                        <div class="card-body" style="height:350px;">
+
+                            <h4 style="display:inline-block;text-align:left!important;">Company Worker</h4>
+                            <button class="addBtn"
+                                *ngIf="projectDetails?.company_worker == null || projectDetails?.company_worker == undefined"
+                                (click)="addMember(addcompanyWorkerModal)">
+                                <i class="fas fa-user-plus"></i>
+                            </button>
+                            <br>
+                            <div style="text-align: center;"
+                                *ngIf="projectDetails?.company_worker != null || projectDetails?.company_worker != undefined">
+                                <img style="height:150px;object-fit: contain;width:150px;border-radius:50%"
+                                    src="{{projectDetails?.company_worker?.img}}">
+                                <p style="padding-top:4%;font-size:20px;font-weight:bold">
+                                    {{projectDetails?.company_worker?.first_name}}
+                                    {{projectDetails?.company_worker?.last_name}}</p>
+                                <p style="font-size:12px;margin-top:-10px">Company Worker</p>
+                                <!-- <button class="chatBtn2">Chat Now</button> -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-8 " *ngIf=" role == 'admin'">
+                    <div class="card">
+                        <div class="card-body" style="height:350px">
+                            <h4 style="text-align:left!important;display: inline-block;">Company Team</h4>
+                            <button class="addBtn" (click)="addMember(addcompanyTeamModal)"  *ngIf="projectDetails?.company_worker != null || projectDetails?.company_worker != undefined">
+                                <i class="fas fa-user-plus"></i>
+                            </button>
+                            <br>
+                            <div style="text-align: center;">
+                                <p-carousel [value]="CTEmployees" [ngClass]="'p-hide-paginator'" [numVisible]="4"
+                                    [numScroll]="4" [circular]="false" [responsiveOptions]="responsiveOptions">
+
+                                    <ng-template let-product pTemplate="item">
+                                        <div class="product-item">
+                                            <div class="product-item-content">
+                                                <div class="p-mb-3">
+                                                    <img style="height:120px;width:120px;border-radius:50%;object-fit: contain;"
+                                                        src="{{product.img}}">
+                                                </div>
+
+                                                <p style="padding-top:4%;font-size:20px;font-weight:bold;height:50px;">
+                                                    {{product?.first_name}}</p>
+
+                                                <p style="font-size:12px;">{{product.designation_name}}</p>
+
+                                                <!-- <button class="chatBtn2">Chat Now</button> -->
+
+
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </p-carousel>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-12 " *ngFor=" let a of steps;let i = index">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 style="display:inline-block">Step {{i+1}}</h4>
+                            <button class="addBtn2" (click)="createStep(a.step_order+1)">
+                                <i class="fas fa-plus" style="margin-top:5px;"></i>
+                            </button>
+                            <button class="deleteBtn2" *ngIf="i != 0" (click)="deleteStep(a.id)">
+                                <i class="fas fa-trash-alt" style="margin-top:5px;"></i>
+                            </button>
+                            <br>
+                            <table class="table projects">
+
+                                <tbody>
+                                    <tr *ngFor="let c of a?.task_details">
+                                        <td width="5%">
+                                            <input type="checkbox" id="vehicle1" (change)="updateTsk(c,a)"
+                                                name="vehicle1" [(ngModel)]="c.is_important">
+
+                                        </td>
+                                        <td width="40%">
+                                            <input type="text" class="inputbox" (blur)="updateTsk(c,a)"
+                                                [(ngModel)]="c.title">
+
+
+                                        </td>
+                                        <td width="20%">
+
+                                            <select class="inputbox" [(ngModel)]="c.employee_id"
+                                                (change)="updateTsk(c,a)" *ngIf="a?.company_worker == null">
+                                                <option [ngValue]="b.id" *ngFor="let b of Employees"
+                                                    style="color:black">
+                                                    {{(b.first_name!=null || b?.first_name!='') ? b.first_name: ''}}
+                                                    {{b?.last_name}}</option>
+                                            </select>
+
+                                            <select class="inputbox" [(ngModel)]="c.employee_id"
+                                                (change)="updateTsk(c,a)" *ngIf="a?.company_worker != null">
+                                                <option [ngValue]="b.id" *ngFor="let b of CTEmployees"
+                                                    style="color:black">
+                                                    {{(b.first_name!=null || b?.first_name!='') ? b.first_name: ''}}
+                                                    {{b?.last_name}}</option>
+                                            </select>
+                                        </td>
+
+
+
+
+                                        <td width="10%">
+
+                                            <select class="inputbox" [(ngModel)]="c.task_status"
+                                                (change)="updateTsk(c,a)">
+                                                <option selected value="0">Pending</option>
+                                                <option value="1">In Progress</option>
+                                                <option value="2">Completed</option>
+
+                                            </select>
+                                        </td>
+                                        <td width="20%">
+                                            <input type="date" class="inputbox" [(ngModel)]="c.deadline"
+                                                (change)="updateTsk(c,a)">
+
+                                        </td>
+
+                                        <td style="width:5%">
+                                            <button class="deleteBtn" (click)="deleteTsk(c.id)">
+
+                                                <i class="fas fa-trash-alt"
+                                                    style="margin-top:5px;margin-left:-2px;"></i>
+                                            </button>
+                                        </td>
+
+
+                                    </tr>
+
+
+
+
+                                    <tr>
+                                        <td width="5%">
+                                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"
+                                                [formControl]="Important">
+                                        </td>
+                                        <td width="40%">
+
+                                            <input type="text" class="inputbox" placeholder="Enter Task Detail"
+                                                [formControl]="title">
+
+                                        </td>
+                                        <td width="15%">
+                                            <!-- <label>Select Employee</label> -->
+                                            <select placeholder="Enter Task Detail" class="inputbox" [formControl]="employee">
+                                                <option value="{{b.id}}" *ngFor="let b of Employees"
+                                                    style="color:black">
+                                                    {{(b.first_name!=null || b?.first_name!='') ? b.first_name: ''}}
+                                                {{b?.last_name}}</option>
+
+                                            </select>
+
+                                        </td>
+
+
+
+                                        <td width="10%">
+
+                                            <select class="inputbox" [formControl]="status1">
+                                                <option value="0">Pending</option>
+                                                <option value="1">In Progress</option>
+                                                <option value="2">Completed</option>
+
+                                            </select>
+                                        </td>
+
+                                        <td width="10%">
+                                            <input type="date" class="inputbox" [formControl]="deadline1">
+                                        </td>
+                                        <td style="width:5%">
+                                            <button class="adBtn" (click)="addItem(a.id)">
+                                                <i class="fas fa-plus" style="margin-top:5px;margin-left:-2px;"></i>
+                                            </button>
+                                        </td>
+
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+                <div class="col-lg-4 ">
+
+                </div>
+                <div class="col-lg-2 " style="padding-top:2%;">
+                    <button class="submitBtn" (click)="navToProjects()">
+                        Submit
+                    </button>
+                </div>
+                <div class="col-lg-2 " style="padding-top:2%;">
+                    <button class="cancelBtn" (click)="navToProjects()">
+                        Cancel
+                    </button>
+                </div>
+
+                <div class="col-lg-4 ">
+
+                </div>
+
+
+
+
+
+
+            </div>
+            <!-- /.row -->
+
+
+            <!-- Employee && Company Worker-->
+
+            <div class="row" *ngIf="role == 'employee' || role == 'company worker'" style="padding:5%;">
+
+
+
+
+                <div class="col-md-12 " *ngIf="role == 'company worker' ">
+                    <div class="card">
+                        <div class="card-body" style="height:350px">
+                            <h4 style="text-align:left!important;display: inline-block;">Company Team</h4>
+                            <button class="addBtn" (click)="addMember(addcompanyTeamModal)">
+                                <i class="fas fa-user-plus"></i>
+                            </button>
+                            <br>
+                            <div style="text-align: center;">
+                                <p-carousel [value]="CTEmployees" [ngClass]="'p-hide-paginator'" [numVisible]="4"
+                                    [numScroll]="4" [circular]="false" [responsiveOptions]="responsiveOptions">
+
+                                    <ng-template let-product pTemplate="item">
+                                        <div class="product-item">
+                                            <div class="product-item-content">
+                                                <div class="p-mb-3">
+                                                    <img style="height:120px;width:120px;border-radius:50%;object-fit: contain;"
+                                                        src="{{product.img}}">
+                                                </div>
+
+                                                <p style="padding-top:4%;font-size:20px;font-weight:bold;height:50px;">
+                                                    {{product?.first_name}}</p>
+
+                                                <p style="font-size:12px;">{{product.designation_name}}</p>
+
+                                                <!-- <button class="chatBtn2">Chat Now</button> -->
+
+
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </p-carousel>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4" (click)="view(viewPdfModal)">
+                    <div class="card cardP">
+                        <h5 class="card-text">
+                            <span>
+                                View
+                            </span>
+                            <br>
+                            <span>
+                                Drawing Plan
+                            </span>
+                        </h5>
+                    </div>
+
+
+                </div>
+
+                <div class="col-md-4" (click)="view(viewPdf2Modal)">
+                    <div class="card cardP">
+                        <h5 class="card-text">
+                            <span>
+                                View
+                            </span>
+                            <br>
+                            <span>
+                                Offers
+                            </span>
+                        </h5>
+                    </div>
+                </div>
+
+                <div class="col-md-4" (click)="viewSteps(viewStepsModal)">
+                    <div class="card cardP">
+                        <h5 class="card-text">
+                            <span>
+                                All
+                            </span>
+                            <br>
+                            <span>
+                                Tasks
+                            </span>
+                        </h5>
+                    </div>
+                </div>
+
+                <div class="col-md-4" (click)="view(activePicturesModal)">
+                    <div class="card cardP">
+                        <h5 class="card-text">
+                            <span>
+                                Active
+                            </span>
+                            <br>
+                            <span>
+                                Pictures
+                            </span>
+                        </h5>
+                    </div>
+                </div>
+
+                <div class="col-md-4" (click)="view(extraWorkModal)">
+                    <div class="card cardP">
+                        <h5 class="card-text">
+                            <span *ngIf="role == 'employee'">
+                                Add
+                            </span>
+                            <br *ngIf="role == 'employee'">
+                            <span *ngIf="role == 'employee'">
+                                Extra Work
+                            </span>
+
+                            <span *ngIf="role == 'company worker'">
+                                View
+                            </span>
+                            <br *ngIf="role == 'company worker'">
+                            <span *ngIf="role == 'company worker'">
+                                Extra Work
+                            </span>
+                        </h5>
+                    </div>
+                </div>
+
+                <div class="col-md-4" (click)="view(newOrderModal)">
+                    <div class="card cardP">
+                        <h5 class="card-text">
+                            <span *ngIf="role == 'employee'">
+                                New
+                            </span>
+                            <br *ngIf="role == 'employee'">
+                            <span *ngIf="role == 'employee'">
+                                Orders
+                            </span>
+
+                            <span *ngIf="role == 'company worker'">
+                                View
+                            </span>
+                            <br *ngIf="role == 'company worker'">
+                            <span *ngIf="role == 'company worker'">
+                                Orders
+                            </span>
+                        </h5>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- /.content -->
+</div>
+
+<!-- /.content-wrapper -->
+
+
+<!--Add Team Member-->
+<ng-template #addteammemberModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title" style="color:black;font-size:24px;margin-top:2%">Add Team Members
+        </h4>
+
+        <button style="background-color: transparent;margin-left:30%;border:none;margin-top:3%;">
+            <label>Search:</label>
+        </button>
+
+        <input type="text" [(ngModel)]="employee_name" class="Search">
+    </div>
+    <div class="modal-body">
+        <table class="table popUp-table ">
+            <thead>
+                <tr>
+                    <th style="width: 1%">
+
+                    </th>
+
+
+                    <th style="width: 5%;">
+                        <span style="margin-left:40px">Name</span>
+                    </th>
+                    <th style="width: 5%;margin-left:20px">
+                        Designation
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let a of AllEmp| filter:employee_name ;let i= index ">
+                    <td style="width: 1%">
+                        <input type="radio" id="vehicle{{i}}" name="vehicle" value="{{a.id}}" [(ngModel)]="a.id"
+                            (change)="selectTeam(a.id)">
+                    </td>
+
+
+                    <td style="width: 5%">
+                        <img alt="Avatar"
+                            style="display:inline-block;height:30px;width:30px;border-radius:50%;margin-top:-5px;margin-right:5px"
+                            class="table-avatar" src="{{a.img}}">
+
+                        {{a.first_name}} {{a.last_name}}
+
+                    </td>
+
+                    <td style="width: 5%">
+                        {{a.designation}}
+                    </td>
+
+                </tr>
+
+            </tbody>
+        </table>
+
+        <div class="row" style="padding-top:5%;padding-bottom:5%">
+            <div class="col-md-4"></div>
+            <div class="col-md-2">
+                <button class="submitBtn" (click)="AddTeam()">
+                    Add
+                </button>
+            </div>
+            <div class="col-md-2">
+                <button class="cancelBtn" (click)="modal.close('okay')">
+                    Cancel
+                </button>
+            </div>
+            <div class="col-md-4"></div>
+
+
+
+        </div>
+
+    </div>
+
+
+</ng-template>
+
+
+<!--Add PM-->
+<ng-template #addPMModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title" style="color:black;font-size:24px;margin-top:2%">Add Project
+            Manager
+        </h4>
+
+        <button style="background-color: transparent;margin-left:30%;border:none;margin-top:3%;">
+            <label>Search:</label>
+        </button>
+
+        <input type="text" [(ngModel)]="employee_name" class="Search">
+    </div>
+    <div class="modal-body ">
+        <table class="table popUp-table ">
+            <thead>
+                <tr>
+                    <th style="width: 1%">
+
+                    </th>
+
+
+                    <th style="width: 5%;">
+                        <span style="margin-left:40px">Name</span>
+                    </th>
+                    <th style="width: 5%;margin-left:20px">
+                        Designation
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let a of projectManagers| filter:employee_name ;let i= index ">
+                    <td style="width: 1%">
+                        <input type="radio" id="vehicle{{i}}" name="vehicle" value="{{a.id}}"
+                            (change)="SelectManager(a.id)" [(ngModel)]="a.id">
+                    </td>
+
+
+                    <td style="width: 5%">
+                        <img alt="Avatar"
+                            style="display:inline-block;height:30px;width:30px;border-radius:50%;margin-top:-5px;margin-right:5px"
+                            class="table-avatar" src="{{a.img}}">
+
+                        {{a.first_name}} {{a.last_name}}
+
+                    </td>
+
+                    <td style="width: 5%">
+                        {{a.designation_name}}
+                    </td>
+
+                </tr>
+
+            </tbody>
+        </table>
+
+        <div class="row" style="padding-top:5%;padding-bottom:5%">
+            <div class="col-md-4"></div>
+            <div class="col-md-2">
+                <button class="submitBtn" (click)="AddPM()">
+                    Add
+                </button>
+            </div>
+            <div class="col-md-2">
+                <button class="cancelBtn" (click)="modal.close('okay')">
+                    Cancel
+                </button>
+            </div>
+            <div class="col-md-4"></div>
+
+
+
+        </div>
+
+    </div>
+
+
+</ng-template>
+
+
+<!--Add Company Team-->
+<ng-template #addcompanyTeamModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title" style="color:black;font-size:23px;margin-top:2%">Add Company
+            Members
+        </h4>
+
+        <button style="background-color: transparent;margin-left:30%;border:none;margin-top:3%;">
+            <label>Search:</label>
+        </button>
+
+        <input type="text" [(ngModel)]="employee_name" class="Search">
+    </div>
+    <div class="modal-body">
+        <table class="table popUp-table ">
+            <thead>
+                <tr>
+                    <th style="width: 1%">
+
+                    </th>
+
+
+                    <th style="width: 5%;">
+                        <span style="margin-left:40px">Name</span>
+                    </th>
+                    <th style="width: 5%;margin-left:20px">
+                        Designation
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let a of AllnonCT| filter:employee_name ;let i= index ">
+                    <td style="width: 1%">
+                        <input type="radio" id="vehicle{{i}}" name="vehicle" value="{{a?.id}}" [(ngModel)]="a.id"
+                            (change)="selectCTeam(a?.id)">
+                    </td>
+
+
+                    <td style="width: 5%">
+                        <img alt="Avatar"
+                            style="display:inline-block;height:30px;width:30px;border-radius:50%;margin-top:-5px;margin-right:5px"
+                            class="table-avatar" src="{{a?.img}}">
+
+                        {{a?.first_name}} {{a?.last_name}}
+
+                    </td>
+
+                    <td style="width: 5%">
+                        {{a?.designation}}
+                    </td>
+
+                </tr>
+
+            </tbody>
+        </table>
+
+        <div class="row" style="padding-top:5%;padding-bottom:5%">
+            <div class="col-md-4"></div>
+            <div class="col-md-2">
+                <button class="submitBtn" (click)="AddCTeam()">
+                    Add
+                </button>
+            </div>
+            <div class="col-md-2">
+                <button class="cancelBtn" (click)="modal.close('okay')">
+                    Cancel
+                </button>
+            </div>
+            <div class="col-md-4"></div>
+
+
+
+        </div>
+
+    </div>
+
+
+</ng-template>
+
+
+
+<!--Add Company Worker-->
+<ng-template #addcompanyWorkerModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title" style="color:black;font-size:24px;margin-top:2%">Add Company
+            Worker
+        </h4>
+
+        <button style="background-color: transparent;margin-left:30%;border:none;margin-top:3%;">
+            <label>Search:</label>
+        </button>
+
+        <input type="text" [(ngModel)]="employee_name" class="Search">
+    </div>
+    <div class="modal-body ">
+        <table class="table popUp-table ">
+            <thead>
+                <tr>
+                    <th style="width: 1%">
+
+                    </th>
+
+
+                    <th style="width: 5%;">
+                        <span style="margin-left:40px">Name</span>
+                    </th>
+                    <th style="width: 5%;margin-left:20px">
+                        Designation
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let a of companyWorkers| filter:employee_name ;let i= index ">
+                    <td style="width: 1%">
+                        <input type="radio" id="vehicle{{i}}" name="vehicle" value="{{a?.id}}"
+                            (change)="SelectWorker(a?.id)" [(ngModel)]="a.id">
+                    </td>
+
+
+                    <td style="width: 5%">
+                        <img alt="Avatar"
+                            style="display:inline-block;height:30px;width:30px;border-radius:50%;margin-top:-5px;margin-right:5px"
+                            class="table-avatar" src="{{a?.img}}">
+
+                        {{a?.first_name}} {{a?.last_name}}
+
+                    </td>
+
+                    <td style="width: 5%">
+                        {{a?.designation}}
+                    </td>
+
+                </tr>
+
+            </tbody>
+        </table>
+
+        <div class="row" style="padding-top:5%;padding-bottom:5%">
+            <div class="col-md-4"></div>
+            <div class="col-md-2">
+                <button class="submitBtn" (click)="AddCW()">
+                    Add
+                </button>
+            </div>
+            <div class="col-md-2">
+                <button class="cancelBtn" (click)="modal.close('okay')">
+                    Cancel
+                </button>
+            </div>
+            <div class="col-md-4"></div>
+
+
+
+        </div>
+
+    </div>
+
+
+</ng-template>
+
+<!--- Add Task-->
+<ng-template #addtaskModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title" style="color:black;font-size:24px;margin-top:2%">Add Task
+        </h4>
+
+
+    </div>
+    <div class="modal-body bady">
+
+        <div class="row">
+            <div class="col-md-12">
+                <label style=" margin-left:7%;">Title</label>
+                <input type="text" class="inp" [(ngModel)]="formData.title">
+            </div>
+        </div>
+
+        <div class="row" style="padding-top:5%">
+            <div class="col-md-6">
+                <label style=" margin-left:15%;">Employee Name</label>
+                <select class="input" style="box-shadow: none;" [(ngModel)]="formData.employee"
+                    (ngModelChange)="SelectEmployee($event)">
+
+                    <option *ngFor="let a of AllEmployees" [ngValue]="a.first_name">
+                        <span>{{a.first_name}}</span>
+                    </option>
+
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <div class="col-md-6">
+                    <label style=" margin-left:10%;">Deadline</label>
+                    <input type="date" class="input2" [(ngModel)]="formData.deadline">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row" style="padding-top:2%">
+            <div class="col-md-6">
+                <label style="margin-left:15%;">Percentage</label>
+                <input type="number" onkeydown="javascript: return event.keyCode == 69 ? false : true" class="input" [(ngModel)]="formData.percentage">
+            </div>
+        </div>
+        <div class="row" style="padding-top:5%;padding-bottom:5%">
+            <div class="col-md-6">
+                <button class="btn submitBtn" (click)="addNewTask()">
+                    Add
+                </button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn cancelBtn" (click)="modal.close('okay')">
+                    Cancel
+                </button>
+            </div>
+
+
+
+        </div>
+    </div>
+
+</ng-template>
+
+
+<!---Edit Task Modal-->
+<ng-template #edittaskfromTMModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title" style="color:black;font-size:24px;margin-top:2%">Edit Task
+        </h4>
+
+
+    </div>
+    <div class="modal-body bady">
+
+        <div class="row">
+            <div class="col-md-12">
+                <label style=" margin-left:7%;">Title</label>
+                <input type="text" class="inp" [(ngModel)]="formData.title">
+            </div>
+        </div>
+
+        <div class="row" style="padding-top:5%">
+            <div class="col-md-6">
+                <label style=" margin-left:15%;">Deadline</label>
+                <input type="date" format="yyyy-mm-dd" class="input" [(ngModel)]="formData.deadline">
+
+            </div>
+
+            <div class="col-md-6">
+                <div class="col-md-6">
+                    <label style=" margin-left:10%;">Percentage</label>
+                    <input type="number" onkeydown="javascript: return event.keyCode == 69 ? false : true" class="input2" [(ngModel)]="formData.percentage">
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+                <label style=" margin-left:15%;">Status</label>
+                <select class="input" style="box-shadow: none;" [formControl]="status">
+
+                    <option value="1">
+                        <span>Completed</span>
+                    </option>
+                    <option value="0">
+                        <span>Pending</span>
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="row" style="padding-top:10%;padding-bottom:5%">
+            <div class="col-md-6">
+                <button class="btn submitBtn" (click)="updateTask()">
+                    Edit
+                </button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn cancelBtn" (click)="modal.close('okay')">
+                    Cancel
+                </button>
+            </div>
+
+
+
+        </div>
+    </div>
+
+</ng-template>
+
+
+<!--- View Tasks-->
+<!---Edit Task Modal-->
+<ng-template #viewtaskfromTMModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title" style="color:black;font-size:24px;margin-top:2%">All Tasks Of
+            Employee
+        </h4>
+        <button style="background-color: transparent;float: right;color:black;border:none;font-size:25px"
+            (click)="modal.close('okay')">
+            <i class="fas fa-times"></i>
+        </button>
+
+    </div>
+    <div class="modal-body bady">
+
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 10%">
+                                Title
+                            </th>
+
+                            <th style="width: 10%">
+                                Deadline
+                            </th>
+                            <th style="width: 10%">
+                                Status
+                            </th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let a of EmpTasks ">
+                            <td style="width: 10%">
+                                {{a.title}}
+
+                            </td>
+
+                            <td style="width: 10%">{{a.deadline}}
+
+                            </td>
+                            <td style="width: 20%">
+                                <span *ngIf="a.task_status =='0'" style="border: 1px solid #ff4800;
+                                    color:#ff4800;padding:2%;border-radius:8px">
+                                    Pending
+                                </span>
+                                <span *ngIf="a.task_status =='1'" style="border: 1px solid #4FAB52;
+                                    color:#4FAB52;padding:2%;border-radius:8px">
+                                    Completed
+                                </span>
+
+                            </td>
+
+
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+
+</ng-template>
+
+
+<!--Project Offer Upload Modal-->
+
+<ng-template #uploadFilemodal let-modal>
+    <div class="modal-header" [style.text-align]="'center'">
+        <h4 class="modal-title" id="modal-basic-title" style="color:black;font-size:24px;margin-top:2%;margin: 0 auto;">
+            Upload Project Offer
+        </h4>
+
+
+    </div>
+    <div class="modal-body">
+        <div class="row" class="margin-bottom:2%">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Upload File</label>
+                    <input type="file" #fileInput class="form-control" accept=".pdf" (change)="fileUpload($event)">
+                    <button class="removeBtn" *ngIf="file !=null" (click)="reset(fileInput)">Remove
+                        Attachment</button>
+                </div>
+
+            </div>
+            <div class="col-md-12" style="padding-top:5%">
+
+                <button type="submit" class="addBtn" (click)="uploadFile()">Send</button>
+                <button type="submit" class="addBtn1" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+</ng-template>
+
+<!----->
+
+
+<!--Project Download Upload Modal-->
+
+<ng-template #uploadFilemodal2 let-modal>
+    <div class="modal-header" [style.text-align]="'center'">
+        <h4 class="modal-title" id="modal-basic-title" style="color:black;font-size:24px;margin-top:2%;margin: 0 auto;">
+            Upload Project Drawing
+        </h4>
+
+
+    </div>
+    <div class="modal-body">
+        <div class="row" class="margin-bottom:2%">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Upload File</label>
+                    <input type="file" #fileInput2 class="form-control" accept=".pdf" (change)="fileUpload2($event)">
+                    <button class="removeBtn" *ngIf="file !=null" (click)="reset2(fileInput2)">Remove
+                        Attachment</button>
+                </div>
+
+            </div>
+            <div class="col-md-12" style="padding-top:5%">
+
+                <button type="submit" class="addBtn" (click)="uploadFile2()">Send</button>
+                <button type="submit" class="addBtn1" (click)="cancel2()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+</ng-template>
+
+<!----->
+
+
+
+<!-- View Steps Model-->
+<ng-template #viewStepsModal let-modal>
+
+    <div class="modal-body" style="height:500px;overflow-y: scroll;">
+        <div class="row">
+            <div class="col-sm-10">
+                <h1></h1>
+            </div>
+            <div class="col-sm-2">
+                <button
+                    style="background-color: transparent;border:none;font-size:20px;color:#C22B30;outline:0;float:right!important"
+                    (click)="modal.close()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="row" class="margin-bottom:2%;">
+            <div class="col-lg-12 " *ngFor="let a of steps;let i = index">
+                <div class="card" *ngIf="role =='employee'">
+                    <div class="card-body">
+                        <h4 style="display:inline-block">Step {{i+1}}</h4>
+
+                        <br>
+                        <table class="table projects">
+                            <thead>
+                                <tr>
+                                    <th style="width:5%">
+
+                                    </th>
+                                    <th style="width: 30%">
+                                        Task Details
+                                    </th>
+                                    <th style="width: 15%">
+                                        Deadline
+                                    </th>
+
+
+                                    <th style="width: 15%">
+                                        Actions
+                                    </th>
+
+                                    <th style="width: 20%">
+                                        Status
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let b of a.task_details">
+                                    <td style="width:5%">
+                                        <span *ngIf="b.is_important == 1">
+                                            <i class="fas fa-check green"></i>
+                                        </span>
+                                    </td>
+                                    <td style="width:30%">
+                                        {{b.title}}
+                                    </td>
+                                    <td style="width:15%">
+                                        <span>
+                                            {{b.deadline}}
+                                        </span>
+                                    </td>
+
+
+                                    <td width="15%;">
+                                        <div *ngIf="a.active == 1">
+                                            <select class="inputbox" (change)="updateTsk(b,a)"
+                                                *ngIf="b.employee_id == shared.customerData.id"
+                                                [(ngModel)]="b.task_status">
+                                                <option [ngValue]="0">Pending</option>
+                                                <option [ngValue]="1">In Progress</option>
+                                                <option [ngValue]="2">Completed</option>
+
+                                            </select>
+                                        </div>
+                                        <div *ngIf="a.active == 0">
+                                            <select class="inputbox" (change)="updateTsk(a,a)"
+                                                *ngIf="b.employee_id == shared.customerData.id"
+                                                [(ngModel)]="b.task_status" disabled>
+                                                <option value="0">Pending</option>
+                                                <option value="1">In Progress</option>
+                                                <option value="2">Completed</option>
+
+                                            </select>
+                                        </div>
+
+
+                                    </td>
+
+                                    <td width="10%">
+                                        <span *ngIf="b.task_status ==1" style="border: 1px solid #ff4800;
+                                        color:#ff4800;padding-left:1%;padding-right:1%;border-radius:8px">
+                                            In Progress
+                                        </span>
+                                        <span *ngIf="b.task_status ==0" style="border: 1px solid #ff4800;
+                                        color:#ff4800;padding-left:1%;padding-right:1%;border-radius:8px">
+                                            Pending
+                                        </span>
+                                        <span *ngIf="b.task_status ==2" style="border: 1px solid #4FAB52;
+                                        color:#4FAB52;padding-left:1%;padding-right:1%;border-radius:8px">
+                                            <s> Completed</s>
+                                        </span>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+
+                <div class="card" *ngIf="role =='company worker'">
+                    <div class="card-body">
+                        <h4 style="display:inline-block">Step {{i+1}}</h4>
+                        <button class="addBtn2" (click)="createStep(a.step_order+1)">
+                            <i class="fas fa-plus" style="margin-top:5px;"></i>
+                        </button>
+                        <button class="deleteBtn2" *ngIf="i != 0 && a?.company_worker != null"
+                            (click)="deleteStep(a.id)">
+                            <i class="fas fa-trash-alt" style="margin-top:5px;"></i>
+                        </button>
+                        <br>
+                        <table class="table projects">
+
+                            <tbody>
+                                <tr *ngFor="let c of a?.task_details">
+                                    <td width="5%">
+                                        <input type="checkbox" id="vehicle1" (change)="updateTsk(c,a)" name="vehicle1"
+                                            [(ngModel)]="c.is_important" *ngIf="a?.company_worker != null">
+
+                                        <span *ngIf="c.is_important == 1 && a?.company_worker == null">
+                                            <i class="fas fa-check green"></i>
+                                        </span>
+
+                                    </td>
+                                    <td width="40%">
+                                        <input type="text" class="inputbox" (blur)="updateTsk(c,a)"
+                                            [(ngModel)]="c.title" *ngIf="a?.company_worker != null">
+                                        <span *ngIf="a?.company_worker == null"> {{c.title}}</span>
+
+                                    </td>
+                                    <td width="20%">
+
+                                        <select class="inputbox" [(ngModel)]="c.employee_id" (change)="updateTsk(c,a)" *ngIf="a?.company_worker != null" >
+                                            <option [ngValue]="b.id" *ngFor="let b of CTEmployees" style="color:black">
+                                                {{b.first_name}}</option>
+                                        </select >
+
+                                        <select class="inputbox" [(ngModel)]="c.employee_id" (change)="updateTsk(c,a)" *ngIf="a?.company_worker == null" disabled>
+                                            <option [ngValue]="b.id" *ngFor="let b of Employees" style="color:black">
+                                                {{b.first_name}}</option>
+                                        </select >
+                                         
+
+                                    </td>
+
+
+
+
+                                    <td width="10%">
+
+                                        <select class="inputbox" [(ngModel)]="c.task_status" (change)="updateTsk(c,a)" *ngIf="a?.company_worker != null">
+                                            <option value="0">Pending</option>
+                                            <option value="1">In Progress</option>
+                                            <option value="2">Completed</option>
+
+                                        </select>
+
+                                        <select class="inputbox" [(ngModel)]="c.task_status" (change)="updateTsk(c,a)" *ngIf="a?.company_worker == null" disabled>
+                                            <option value="0">Pending</option>
+                                            <option value="1">In Progress</option>
+                                            <option value="2">Completed</option>
+
+                                        </select>
+                                    </td>
+                                    <td width="20%">
+                                        <input type="date" class="inputbox" [(ngModel)]="c.deadline"
+                                            (change)="updateTsk(c,a)" *ngIf="a?.company_worker != null">
+                                            <span *ngIf="a?.company_worker == null">
+                                                {{c.deadline}}
+                                            </span>
+                                    </td>
+
+                                    <td style="width:5%">
+                                        <button class="deleteBtn" (click)="deleteTsk(c.id)" *ngIf="a?.company_worker != null">
+
+                                            <i class="fas fa-trash-alt" style="margin-top:5px;margin-left:-2px;"></i>
+                                        </button>
+                                    </td>
+
+
+                                </tr>
+
+
+
+
+                                <tr *ngIf="a?.company_worker != null">
+                                    <td width="5%">
+                                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"
+                                            [formControl]="Important">
+                                    </td>
+                                    <td width="40%">
+
+                                        <input type="text" class="inputbox" placeholder="Enter Task Detail"
+                                            [formControl]="title">
+
+                                    </td>
+                                    <td width="15%">
+                                        <select class="inputbox" [formControl]="employee">
+                                            <option value="{{b.id}}" *ngFor="let b of CTEmployees" style="color:black">
+                                                {{b.first_name}}</option>
+
+                                        </select>
+
+                                    </td>
+
+
+
+                                    <td width="10%">
+
+                                        <select class="inputbox" [formControl]="status1">
+                                            <option value="0">Pending</option>
+                                            <option value="1">In Progress</option>
+                                            <option value="2">Completed</option>
+
+                                        </select>
+                                    </td>
+
+                                    <td width="10%">
+                                        <input type="date" class="inputbox" [formControl]="deadline1">
+                                    </td>
+                                    <td style="width:5%">
+                                        <button class="adBtn" (click)="addItem(a.id)">
+                                            <i class="fas fa-plus" style="margin-top:5px;margin-left:-2px;"></i>
+                                        </button>
+                                    </td>
+
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</ng-template>
+
+<!----->
+
+
+<!-- View Project Drawing-->
+
+<ng-template #viewPdfModal let-modal>
+    <div class="modal-header" [style.text-align]="'center'">
+        <h1></h1>
+
+        <button
+            style="background-color: transparent;border:none;font-size:20px;color:#C22B30;outline:0;float:right!important"
+            (click)="modal.close()">
+            <i class="fas fa-times"></i>
+        </button>
+
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <div [innerHTML]="yt | safe: 'html'" class="pdf1"></div>
+            </div>
+        </div>
+    </div>
+
+</ng-template>
+<!----->
+
+
+<!-- View Project Offer-->
+
+<ng-template #viewPdf2Modal let-modal>
+    <div class="modal-header" [style.text-align]="'center'">
+        <h1></h1>
+
+        <button
+            style="background-color: transparent;border:none;font-size:20px;color:#C22B30;outline:0;float:right!important"
+            (click)="modal.close()">
+            <i class="fas fa-times"></i>
+        </button>
+
+    </div>
+    <div class="modal-body">
+
+
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <div [innerHTML]="yt2 | safe: 'html'" class="pdf1"></div>
+            </div>
+        </div>
+    </div>
+
+</ng-template>
+<!----->
+
+
+<!-- Active Pictures-->
+
+<ng-template #activePicturesModal let-modal>
+    <div class="modal-header" [style.text-align]="'center'">
+        <button style="margin-left:auto;margin-right:auto" onclick="document.getElementById('selectedFile').click();"
+            *ngIf="role == 'employee'">
+            Upload Picture
+        </button>
+
+        <h1 *ngIf="role == 'company worker'"></h1>
+        <input type="file" accept="image/*" id="selectedFile" (change)="onFileChange($event)" style="display: none;">
+
+        <button
+            style="background-color: transparent;border:none;font-size:20px;color:#C22B30;outline:0;float:right!important"
+            (click)="modal.close()">
+            <i class="fas fa-times"></i>
+        </button>
+
+    </div>
+    <div class="modal-body">
+        <div class="row" style="margin-bottom:2%">
+
+
+            <div class="col-sm-6" *ngFor="let a of activePictures">
+                <img style="width:100%;display: inline-block;object-fit: cover;" src="{{a.image}}" />
+
+
+            </div>
+        </div>
+    </div>
+
+</ng-template>
+<!----->
+
+
+<!-- Extra Work-->
+
+<ng-template #extraWorkModal let-modal>
+    <div class="modal-header" [style.text-align]="'center'">
+
+        <h1></h1>
+
+        <button
+            style="background-color: transparent;border:none;font-size:20px;color:#C22B30;outline:0;float:right!important"
+            (click)="modal.close()">
+            <i class="fas fa-times"></i>
+        </button>
+
+
+
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-md-12" *ngIf="role == 'employee'">
+                <table class="table projects">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%">
+                                Task Details
+                            </th>
+                            <th style="width: 15%">
+                                Date
+                            </th>
+
+
+                            <th style="width: 15%">
+                                Hours
+                            </th>
+                            <th style="width: 15%">
+
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+
+                            <td style="width:30%">
+                                <input type="text" class="inpFields" [(ngModel)]="formDta.task_Details" />
+                            </td>
+                            <td style="width:15%">
+                                <input type="date" class="inpFields" [(ngModel)]="formDta.date" />
+                            </td>
+
+
+                            <td width="15%;">
+                                <input type="number" onkeydown="javascript: return event.keyCode == 69 ? false : true" class="inpFields" [(ngModel)]="formDta.hours" />
+
+                            </td>
+
+                            <td width="15%">
+                                <button (click)="addExtraWork()" class="cancelBtn">
+                                    Submit
+                                </button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <table class="table projects">
+                        <thead>
+                            <tr>
+
+                                <th style="width: 30%">
+                                    Task Details
+                                </th>
+                                <th style="width: 15%">
+                                    Date
+                                </th>
+
+
+                                <th style="width: 15%">
+                                    Hours
+                                </th>
+
+                                <th style="width: 20%">
+                                    Created by
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let b of extraWork">
+
+                                <td style="width:30%">
+                                    {{b?.task_details}}
+                                </td>
+                                <td style="width:15%">
+                                    <span>
+                                        {{b?.date}}
+                                    </span>
+                                </td>
+
+
+                                <td width="15%;">
+                                    <span>
+                                        {{b?.hours}}
+                                    </span>
+
+                                </td>
+
+                                <td width="20%">
+                                    <span>
+                                        {{b?.created_by}}
+                                    </span>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</ng-template>
+<!----->
+
+<!-- New Order -->
+
+<ng-template #newOrderModal let-modal>
+    <div class="modal-header" [style.text-align]="'center'">
+
+        <h1></h1>
+
+        <button
+            style="background-color: transparent;border:none;font-size:20px;color:#C22B30;outline:0;float:right!important"
+            (click)="modal.close()">
+            <i class="fas fa-times"></i>
+        </button>
+
+
+
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-md-12" *ngIf="role == 'employee'">
+                <table class="table projects">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%">
+                                Order Details
+                            </th>
+                            <th style="width: 30%">
+                                Price
+                            </th>
+
+                            <th style="width: 15%">
+
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+
+                            <td style="width:30%">
+                                <input type="text" class="inpFields" [(ngModel)]="frmData.order_details" />
+                            </td>
+
+
+
+                            <td width="15%;">
+                                <input type="number" onkeydown="javascript: return event.keyCode == 69 ? false : true" class="inpFields" [(ngModel)]="frmData.price" />
+
+                            </td>
+
+                            <td width="15%">
+                                <button (click)="addOrder()" class="cancelBtn">
+                                    Submit
+                                </button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <table class="table projects">
+                        <thead>
+                            <tr>
+
+                                <th style="width: 30%">
+                                    Order Details
+                                </th>
+
+
+
+                                <th style="width: 30%">
+                                    Price
+                                </th>
+
+                                <th style="width: 20%">
+                                    Created by
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let b of orders">
+
+                                <td style="width:30%">
+                                    {{b?.order_detail}}
+                                </td>
+                                <td style="width:30%">
+                                    <span>
+                                        {{b?.price}} USD
+                                    </span>
+                                </td>
+
+
+
+
+                                <td width="20%">
+                                    <span>
+                                        {{b?.created_by}}
+                                    </span>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</ng-template>
+<!----->

@@ -1,0 +1,310 @@
+<div>
+    <!-- Content Header (Page header) -->
+    <div class="curve">
+        <p></p>
+    </div>
+    <!-- Content Header (Page header) -->
+    <div class="row">
+        <div class="col-md-3">
+            <h3 class="heading"><strong>Designations</strong></h3>
+        </div>
+
+        <div class="col-md-3">
+
+        </div>
+
+        <div class="col-md-6" style="text-align: right;">
+
+            <!-- <div class="dropdown" style="display: inline-block;margin-left:10%;">
+                <button class="drpBtn">
+                    <img style="height:30px;width:40px;margin-top:-20px" src="../../../../../assets/img/en.png">
+                </button>
+                <div class="dropdown-content">
+                    <a (click)="changeLang('../../../../../assets/images/en.png','en')"><img
+                            style="height:30px;width:50px;" src="../../../../../assets/img/en.png"></a>
+                    <a (click)="changeLang('../../../../../assets/images/no.png','no')"><img
+                            style="height:30px;width:50px;" src="../../../../../assets/img/en.png"></a>
+
+                </div>
+            </div> -->
+
+            <div class="dropdown" style="display: inline-block;">
+                <button class="drpbtn" style=" background-color: transparent!important">
+                    <i class="fas fa-bell icon" style="color:black!important"></i>
+                </button>
+                <div class="dropdown-content2">
+
+                    <button class="button1"> No Today's Events</button>
+                </div>
+            </div>
+
+            <div class="dropdown1" style="display: inline-block;">
+                <button class="drpbtn" style=" background-color: transparent!important">
+                    <img src="{{shared.customerData.img}}" class="img-circle profile-pic" alt="User Image">
+                </button>
+                <div class="dropdown-content1">
+
+                    <button class="button1" (click)="logout()">Logout</button>
+                </div>
+            </div>
+
+
+
+
+            <h3 class="profile">
+                {{shared.customerData.first_name}} {{shared.customerData.last_name}}
+                <br>
+                <span class="small-text">{{shared.customerData.designation}}</span>
+
+
+            </h3>
+
+            <div class="dropdown" style="display: inline-block;">
+                <button class="drpbtn" style=" background-color: transparent!important">
+                    <i class="fas fa-cog icon" style="color:black!important"></i>
+                </button>
+                <div class="dropdown-content2">
+
+                    <button class="button1"> No Setting Available</button>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+    <section class="content" style="margin-top:1%;">
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <div class="card" style="border-radius:8px">
+                        <div class="card-header">
+
+
+                            <div class="row">
+                              
+                                <div class="col-md-1"></div>
+                                <div class="col-md-6">
+                                    <div class="search-box">
+                                        <span
+                                            style="margin-left:1%;margin-right:1%;font-weight:bold;font-size:18px;">Search:</span>
+                                        <input type="text" class="Search" [(ngModel)]="designation_name">
+                                        <i class="fas fa-search"
+                                            style="float:right;margin-top:5px;margin-right:10px;font-size:20px;font-weight:bold"></i>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-1"></div>
+
+                                <div class="col-md-4">
+                                    <button class="addBtn" (click)="addDesignation(addDesignationModal)">
+                                        <i class="fas fa-plus"></i>
+                                        <span> Add Designation</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card-body p-0">
+                            <table class="table projects">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 1%">
+
+                                        </th>
+                                        <th style="width: 40%">
+                                            Designation
+                                        </th>
+
+
+                                        <th style="width: 10%">
+                                            Actions
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let a of dummyDesignations | filter:designation_name">
+                                        <td style="width: 1%">
+                                            <div id="outer-circle">
+                                                <div class="inner-circle" [style.background-color]="a.color">
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td style="width: 40%">
+                                            <span>{{a?.designation_name}}</span>
+                                        </td>
+
+
+                                        <td style="width: 10%">
+
+                                            <button class="options1" (click)="Edit(a,editDesignationModal)">
+                                                <i class="fas fa-pencil-alt" style="color:#fff"></i>
+                                            </button>
+                                            <button class="options2" (click)="Delete(a.id)">
+                                                <i class="fas fa-trash-alt" style="color:#fff"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                            <div class="d-flex justify-content-between p-4 pagination">
+                                <ngb-pagination [collectionSize]="dummyDesignations.length" [pageSize]="pageSize"
+                                    [(page)]="page" [maxSize]="20" [rotate]="true" [ellipses]="false"
+                                    [boundaryLinks]="true">
+                                </ngb-pagination>
+
+                                <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+                                    <option [ngValue]="20">20</option>
+                                    <option [ngValue]="50">50</option>
+                                    <option [ngValue]="100">100</option>
+                                    <option [ngValue]="1000">All</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+
+                <div class="col-lg-6" style="border-radius:8px">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title" style="font-weight:bolder">Total Designations</h3>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="chartjs-container">
+                                        <canvas baseChart [data]="doughnutChartData" [options]="doughnutChartOptions"
+                                            [legend]="doughnutChartLegend" [labels]="doughnutChartLabels"
+                                            [colors]="doughnutChartColors" [chartType]="doughnutChartType">
+                                        </canvas>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </section>
+
+
+</div>
+
+
+<!--- Add Designaiton-->
+<ng-template #addDesignationModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title" style="color:black;font-size:24px;margin-top:2%">Add Designation
+        </h4>
+
+
+    </div>
+    <div class="modal-body bady">
+
+        <div class="row">
+            <div class="col-md-12">
+                <label>Designation Name</label>
+                <input type="text" class="inp" [(ngModel)]="formData.designation">
+            </div>
+        </div>
+
+        <div class="row" style="padding-top:5%">
+            <div class="col-md-12">
+                <label>Select Color</label>
+                <br>
+                <input type="color" class="select-color" name="favcolor" id="favcolor" (click)="Selectcolor()"
+                    [style.border]="select1?'2px solid #000':'none'" />
+
+            </div>
+
+
+        </div>
+
+
+        <div class="row" style="padding-top:10%;padding-bottom:5%">
+            <div class="col-md-6">
+                <button class="btn submitBtn" (click)="adddesignation()">
+                    Add
+                </button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn cancelBtn" (click)="modal.close('okay')">
+                    Cancel
+                </button>
+            </div>
+
+
+
+        </div>
+    </div>
+
+</ng-template>
+
+
+
+<!--- Edit Designaiton-->
+<ng-template #editDesignationModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title" style="color:black;font-size:24px;margin-top:2%">Edit Designation
+        </h4>
+
+
+    </div>
+    <div class="modal-body bady">
+
+        <div class="row">
+            <div class="col-md-12">
+                <label>Designation Name</label>
+                <input type="text" class="inp" [(ngModel)]="formData.designation">
+            </div>
+        </div>
+
+        <div class="row" style="padding-top:5%">
+            <div class="col-md-12">
+                <label>Select Color</label>
+                <br>
+                <input type="color" class="select-color" name="favcolor" id="favcolor" [(ngModel)]="formData.color"
+                    (click)="Selectcolor()" [style.border]="select1?'2px solid #000':'none'" />
+
+            </div>
+
+
+        </div>
+
+
+        <div class="row" style="padding-top:10%;padding-bottom:5%">
+            <div class="col-md-6">
+                <button class="btn submitBtn" (click)="editDesignation()">
+                    Edit
+                </button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn cancelBtn" (click)="modal.close('okay')">
+                    Cancel
+                </button>
+            </div>
+
+
+
+        </div>
+    </div>
+
+</ng-template>

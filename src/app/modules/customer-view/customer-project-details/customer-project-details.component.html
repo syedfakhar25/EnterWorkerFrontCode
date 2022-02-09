@@ -1,0 +1,217 @@
+<section class="content" style="margin-top: 1%">
+    <div class="container-fluid">
+        <h1 style="text-align: center; padding-bottom: 30px;">Project Details</h1>
+        <div class="row" style="padding: 0 15rem 0 15rem; justify-content: space-between">
+            <div class="col-lg-6">
+                <div class="card" style="padding: 2%">
+                    <div class="card-body" style="height: 300px">
+                        <span class="vertical_middle">
+                            <span>
+                                <img src="/assets/img/avatar.png" class="img-circle profile-pic" alt="User Image" />
+                            </span>
+                            <span>
+                                <h3>
+                                    <!-- {{ this.projectDeatils.manager.name }} -->
+                                    {{(this.projectDeatils?.manager?.first_name!=null || this.projectDeatils?.manager?.first_name!='') ?
+                                    this.projectDeatils?.manager?.first_name: ''}}
+                                                {{this.projectDeatils?.manager?.last_name}}
+                                    <!-- {{ this.shared.customerData.last_name }} -->
+                                </h3>
+                                <p style="font-size: 12px;">Project Manager</p>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card" style="padding: 2%">
+                    <div class="card-body" style="display: flex; flex-direction: column; height: 300px">
+                        <button class="btn btn-danger offer_button_btn"
+                            style="margin: 1rem 5rem 0 5rem !important; height: 100px; width: 70%;" (click)="viewProjectOffer(viewDrawing)">
+                            Offer
+                        </button>
+                        <button class="btn btn-danger offer_button_btn"
+                            style="margin: 1rem 5rem 0 5rem !important; height: 100px; width: 70%;" (click)="viewProjectOffer(viewOffer)">
+                            Drawing
+                        </button>
+                        <!-- <img src="/assets/img/avatar.png" class="img-circle profile-pic" alt="User Image"> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding: 1rem 15rem 0 15rem; justify-content: space-between">
+            <div class="step_number">
+                <h1>Employee</h1>
+            </div>
+            <div class="col-lg-12">
+                <div class="card" style="padding: 2%">
+                    <div class="card-body" style="height: 300px">
+                        <!-- <div style="text-align: center;"> -->
+                            <p-carousel style="width: 100%;" [value]="this.projectDeatils?.employee" [ngClass]="'p-hide-paginator'" [numVisible]="4"
+                                [circular]="false" [responsiveOptions]="responsiveOptions">
+
+                                <ng-template let-product pTemplate="item">
+                                    <div class="product-item">
+                                        <div class="product-item-content">
+                                            <div class="p-mb-3">
+                                                <img style="height:200px;width:200px;border-radius:50%;"
+                                                    src="{{product.img}}" alt="test">                                                
+                                            </div>
+
+                                            <p style="padding-top:4%;font-size:20px;font-weight:bold;height:50px;">
+                                                {{(product.first_name!=null || product?.first_name!='') ?
+                                                product.first_name: ''}}
+                                                {{product?.last_name}}</p>
+
+                                            <p style="font-size:12px;">{{product.designation}}</p>
+
+                                            <!-- <button class="chatBtn2">Chat Now</button> -->
+
+
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </p-carousel>
+                        <!-- </div> -->
+                        <!-- <span class="vertical_middle">
+                            <span>
+                                <h3>
+                                    {{ this.shared.customerData.first_name }}
+                                    {{ this.shared.customerData.last_name }}
+                                </h3>
+                                <p style="font-size: 12px;">Project Manager</p>
+                            </span>
+                        </span> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="padding: 1rem 15rem 0 15rem; justify-content: space-between" *ngFor="let step of projectSteps; let i = index">
+            <div class="step_number">
+                <h1>Step {{i+1}}</h1>
+            </div>
+            <div class="card ng-tns-c176-1">
+                <div class="card-body ng-tns-c176-1">
+                    <table class="table projects ng-tns-c176-1">
+                        <thead>
+                            <tr>
+                                <th width="40%">
+                                    Task
+                                </th>
+                                <th width="20%">
+                                    Assigned To
+                                </th>
+                                <th width="10%">
+                                    Designation
+                                </th>
+                                <th width="20%">
+                                    Status
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="ng-tns-c176-1">
+                            <tr *ngFor="let task of step?.task_details">
+                                <td width="40%">
+                                    {{task?.title}}
+                                </td>
+                                <td width="20%">
+                                    <img style="width: 50px;height: 50px;border-radius: 30px;" src="{{task?.employee_details?.img}}">
+                                    {{task?.employee_details?.name}}
+                                    <!-- {{(task?.employee?.first_name!=null || task?.employee?.first_name!='') ?
+                                    task?.employee?.first_name: ''}}
+                                                {{task?.employee?.last_name}} -->
+                                </td>
+                                <td width="10%">
+                                    {{task?.employee_details?.designation_name}}
+                                </td>
+                                <!-- <td width="20%">
+                                    {{task?.task_status}}
+                                </td> -->
+                                <td width="15%">
+                                    <span *ngIf="task?.task_status == '1'" style="border: 1px solid #FF9600;
+                                    color:#FF9600;padding-left:1%;padding-right:1%;border-radius:8px;">
+                                      Progress
+                                    </span>
+                                    <span *ngIf="task?.task_status == '0'" style="border: 1px solid #FF9600;
+                                    color:#ff0000;padding-left:1%;padding-right:1%;border-radius:8px;">
+                                      Pending
+                                    </span>
+                                    <span *ngIf="task?.task_status == '2'" style="border: 1px solid #4FAB52;
+                                    color:#4FAB52;padding-left:1%;padding-right:1%;border-radius:8px;">
+                                      Completed
+                                    </span>
+                                  </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div style="padding: 1rem 15rem 0 15rem; justify-content: space-between">
+            <div class="card">
+                <div class="card-body ">
+                    <div class="project_completed_section">
+                        <span>
+                            <h2>
+                                Project is ompleted successfuly, <br>please download the project file below.
+                            </h2>
+                        </span>
+                        <span><button class="btn btn-danger offer_button_btn mb-5">Download</button></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="extra_work_section">
+            <button class="btn btn-danger offer_button_btn">Extra Work</button>
+            <button class="btn btn-danger offer_button_btn ml-5">Make Order</button>
+        </div> -->
+    </div>
+</section>
+
+<ng-template #viewDrawing let-modal>
+    <div class="modal-header" [style.text-align]="'center'">
+        <h1></h1>
+
+        <button
+            style="background-color: transparent;border:none;font-size:20px;color:#C22B30;outline:0;float:right!important"
+            (click)="modal.close()">
+            <i class="fas fa-times"></i>
+        </button>
+
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <div [innerHTML]="projectDrawing | safe: 'html'" class="pdf1"></div>
+            </div>
+        </div>
+    </div>
+
+</ng-template>
+
+<ng-template #viewOffer let-modal>
+    <div class="modal-header" [style.text-align]="'center'">
+        <h1></h1>
+
+        <button
+            style="background-color: transparent;border:none;font-size:20px;color:#C22B30;outline:0;float:right!important"
+            (click)="modal.close()">
+            <i class="fas fa-times"></i>
+        </button>
+
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <div [innerHTML]="projectOffer | safe: 'html'" class="pdf1"></div>
+            </div>
+        </div>
+    </div>
